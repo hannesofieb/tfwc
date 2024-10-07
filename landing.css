@@ -19,7 +19,7 @@ html, body {
     position: relative;
     width: 1920px; /* Set fixed width to match original image size */
     height: 1080px; /* Set fixed height to match original image size */
-    background-image: url('assets/landing/landingpage.png'); /* Background image */
+    background-image: url('assets/landing/landingpage4web.jpg'); /* Background image */
     background-size: cover; /* Cover ensures the entire div has the background */
     background-position: center;
 }
