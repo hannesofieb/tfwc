@@ -1,0 +1,73 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent default scrollbars from appearing */
+}
+
+/* Scrollable container */
+.scroll-container {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow: scroll; /* Enable scrolling to explore the content */
+    cursor: grab; /* Change cursor to indicate the draggable nature */
+}
+
+/* Main landing page (background image container) */
+.landing-page {
+    position: relative;
+    width: 1920px; /* Set fixed width to match original image size */
+    height: 1080px; /* Set fixed height to match original image size */
+    background-image: url('assets/landing/landingpage.png'); /* Background image */
+    background-size: cover; /* Cover ensures the entire div has the background */
+    background-position: center;
+}
+
+/* Clickable navigation items */
+.nav-item {
+    position: absolute; /* Allowing for exact positioning on top of the background */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out; /* Smooth hover animation */
+}
+
+.nav-item:hover {
+    transform: scale(1.1); /* Make the item slightly bigger on hover */
+}
+
+
+.object-1{
+    width: 22%; /* Adjust size as needed */
+}
+
+.object-2 {
+    width: 4.4%; /* Adjust size as needed */
+}
+
+.object-3 {
+    width: 11%; /* Adjust size as needed */
+}
+
+.object-4 {
+    width: 30.32%; /* Adjust size as needed */
+}
+
+.object-5 {
+    width: 15%; /* Adjust size as needed */
+}
+
+.object-6 {
+    width: 44.5%; /* Adjust size as needed */
+}
+
+.logo{
+    position: absolute; /* Allowing for exact positioning on top of the background */
+    cursor: pointer;
+    width: 13.5%;
+    transition: transform 0.3s ease-in-out; /* Smooth hover animation */
+
+}
+
+.logo:hover {
+    transform: scale(1.01); /* Make the item slightly bigger on hover */
+}

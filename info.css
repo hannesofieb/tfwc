@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    background-color: #582b31;
+    opacity: 1;
+    cursor: url('assets/cursors/clicked-wine.cur'), auto;
+    animation: fade-in 1s ease forwards; /* Apply the animation */
+}
+
+ul {
+    list-style-type: none;   
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+p {
+    font-size: 2em;
+    color: #b93751;
+}
+
+h1 {
+    font-family: var(--condensed-font);
+    font-size: 4em;
+    color: #b93751;
+    text-transform: uppercase;
+}
+
+a {
+    margin: 50em 0 0 1em;
+    color: #b93751;
+    font-size: 1em;
+    font-family: var(--condensed-font);
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+}
+
+.access-menu {
+    margin: 16em 0 0 0;
+}
+
+.text {
+    width: 60%;
+    padding-left: 5em;
+}
+
+.cross {
+    width: 100px;
+    position: fixed; /* Fixed positioning */
+    bottom: 0; /* Position at the bottom */
+    right: 0; /* Position at the right */
+    margin: 2em; /* Margin for spacing */
+    filter: invert(30%) sepia(200%) saturate(900%) hue-rotate(675deg) brightness(80%) contrast(100%);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0; /* Start transparent */
+        transform: translateY(50vh); /* Start 50vh down */
+    }
+    to {
+        opacity: 1; /* End fully visible */
+        transform: translateY(0); /* End at original position */
+    }
+}

@@ -1,0 +1,18 @@
+:root{
+    --logo-font: "livory", serif;
+    --condensed-font: "kensington", sans-serif;
+}
+
+.logo{
+    font-family: var(--logo-font);
+}
+
+.custom-font {
+    font-family: var(--condensed-font);
+    font-weight: 500;
+    font-style: normal; 
+}
+
+p{
+    font-family: var(--condensed-font);
+}

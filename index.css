@@ -1,0 +1,76 @@
+body{
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    height: 100vh;           /* Sets body's height to viewport height */
+    margin: 0; 
+    background-color: #240101;
+    cursor: url('assets/cursors/clicked-wine.cur') 12 12, auto;
+
+}
+
+em, p, h1, button{
+    text-align: center;
+    font-family: var(--logo-font);
+    color: #f7f4ed;
+}
+
+h1{
+    text-transform: uppercase;
+    font-family: var(--logo-font);
+    font-weight: 500;
+}
+
+.text-box{
+    background-color: #240101;
+    max-width: 400px;
+    height: auto;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #240101;
+    border-radius: 5px;
+    margin: 0 auto 20vh auto;  /* Pushes .text-box down by 60% of viewport height */
+
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.click{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+button{
+    background-color: #f7f4ed;
+    color: #240101;
+    border: 1px solid #f7f4ed;
+    padding: 0.5em 1em;
+}
+
+
+
+/* Gifs container styles */
+.gifs {
+    position: relative; /* Establishes positioning context */
+    height: 200px; /* Set a fixed height to prevent layout shift */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    margin: 2em 0;;
+}
+
+.gifs img {
+    opacity: 0; /* Start as transparent */
+    transition: opacity 0.5s; /* Smooth transition */
+}
+
+/* Show the GIF when hovering over the button */
+.click button:hover + .gifs img {
+    opacity: 1; /* Make the corresponding image fully visible */
+}

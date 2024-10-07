@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
+    <title>tfwc initiates</title>
+</head>
+<body>
+    <div class="text-box">
+        <em>Sucking out the marrow of life doesn't mean getting the bone stuck in your throat... There is a place for daring and a place for caution, and a wise (wo)man understands which is called for.</em>
+        <h1>are you wise?</h1>
+        <div class="buttons">
+            <div class="click">
+                <button id="yes-btn" onclick="redirect('yes')">Yes, I'm 18+</button>
+                <button id="no-btn" onclick="redirect('no')">No :(</button>
+            </div>
+            <div class="gifs">
+                <img id="gif" src="" alt="GIF will appear here" style="width: 100%; height: auto; opacity: 0;">
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        function redirect(choice) {
+            if (choice === 'yes') {
+                window.location.href = 'landing.html';
+            } else {
+                window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+            }
+        }
+        // Array of GIF links
+    const gifs = [
+        "https://media1.tenor.com/m/4GfLdtFTTHQAAAAC/arrested-development-wine.gif", // GIF for "Yes"
+        "https://media2.giphy.com/media/l3V0GfVjIEXEeujRK/giphy.gif?cid=6c09b952cl31tamwnr7cvz2xyg6sn6qb8rv716vc4mh7kn5n&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" // GIF for "No"
+    ];
+
+    const yesButton = document.getElementById('yes-btn');
+    const noButton = document.getElementById('no-btn');
+    const gifImage = document.getElementById('gif');
+
+    // Show the corresponding GIF on hover
+    yesButton.addEventListener('mouseenter', function() {
+        gifImage.src = gifs[0]; // Set the src to the first GIF
+        gifImage.style.opacity = '1'; // Make it visible
+    });
+    yesButton.addEventListener('mouseleave', function() {
+        gifImage.style.opacity = '0'; // Hide the GIF
+    });
+
+    noButton.addEventListener('mouseenter', function() {
+        gifImage.src = gifs[1]; // Set the src to the second GIF
+        gifImage.style.opacity = '1'; // Make it visible
+    });
+    noButton.addEventListener('mouseleave', function() {
+        gifImage.style.opacity = '0'; // Hide the GIF
+    });
+    </script>
+</body>
+</html>
