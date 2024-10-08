@@ -1,9 +1,12 @@
 :root{
     --logo-font: "livory", serif;
     --condensed-font: "kensington", sans-serif;
+    --burgundy: #582b31;
+    --ruby: #b93751;
+    --white: #f7f4ed;
 }
 
-.logo{
+.logo-font{
     font-family: var(--logo-font);
 }
 

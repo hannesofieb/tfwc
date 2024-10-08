@@ -4,7 +4,7 @@ body{
     align-items: center;     /* Centers vertically */
     height: 100vh;           /* Sets body's height to viewport height */
     margin: 0; 
-    background-color: #240101;
+    background-color: var(--burgundy);
     cursor: url('assets/cursors/clicked-wine.cur') 12 12, auto;
 
 }
@@ -12,7 +12,7 @@ body{
 em, p, h1, button{
     text-align: center;
     font-family: var(--logo-font);
-    color: #f7f4ed;
+    color: var(--white);
 }
 
 h1{
@@ -22,13 +22,13 @@ h1{
 }
 
 .text-box{
-    background-color: #240101;
+    background-color: var(--burgundy);
     max-width: 400px;
     height: auto;
     padding: 2em;
     display: flex;
     flex-direction: column;
-    border: 5px solid #240101;
+    border: 5px solid var(--burgundy);
     border-radius: 5px;
     margin: 0 auto 20vh auto;  /* Pushes .text-box down by 60% of viewport height */
 
@@ -47,9 +47,9 @@ h1{
 }
 
 button{
-    background-color: #f7f4ed;
-    color: #240101;
-    border: 1px solid #f7f4ed;
+    background-color: var(--white);
+    color: var(--burgundy);
+    border: 1px solid var(--burgundy);
     padding: 0.5em 1em;
 }
 

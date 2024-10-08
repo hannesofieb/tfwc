@@ -70,4 +70,5 @@ html, body {
 
 .logo:hover {
     transform: scale(1.01); /* Make the item slightly bigger on hover */
+    cursor: help;
 }
