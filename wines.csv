@@ -1,11 +1,19 @@
 front, back, name, funkyNormal, price, link, comment
 /assets/wines/bianco-dritto_orange_75_ccmelb.png, ,'Bianco Dritto', funky, 75, https://www.instagram.com/ccmelbourne/, 
 /assets/wines/verde_whiteNATURAL_29_blacksparrow.png,,'Verde Semillon', funky, 29, https://www.blackheartsandsparrows.com.au/products/37689/pool-wines-verde-semillon-2024,
-/assets/wines/mojo03_red_20_liqland.png,, 'Mojo03', normal, 20, https://www.liquorland.com.au/red-wine/mojo-cabernet-sauvignon-750ml_3855151, 
-/assets/wines/gioVino_redNatural_64_ccmelb.png,, 'gio vino', funky, 64, https://www.instagram.com/ccmelbourne/, 
-/assets/wines/mementomori_16_red_hsr_FRONT.png, /assets/wines/mementomori_16_red_hsr_BACK.png, 'Everything is free blend', funky, 16, https://www.hopestradio.community/, 
 /assets/wines/littleReddie_white_14_35_goodM.png, , 'Little reddie', normal, 35, https://www.instagram.com/goodmeasuremelbourne/, 
 /assets/wines/acidacid_earthAngels.png, , 'ACID ACID', funky, , https://www.earthangels.bar/, 
-/assets/wines/bowlers_white_3_5_dm.webp,, 'Bowler's run semillon sauvignon blanc', normal, 3.5, https://www.danmurphys.com.au/product/DM_342073/bowler-s-run-semillon-sauvignon-blanc?isFromSearch=true&isPersonalised=false&isSponsored=false&state=5&pageName=category_page, 
-/assets/wines/bowlers_red_3_5_dm.webp,, 'Bowler's run merlot', normal, 3.5,https://www.danmurphys.com.au/product/DM_330324/bowler-s-run-cabernet-merlot?isFromSearch=true&isPersonalised=false&isSponsored=false&state=6&pageName=category_page, 
 /assets/wines/WhipWines_whiteNatural_32_crookedDr.png, '','Whip Wines White', funky, 32, https://crookeddrinks.com.au/products/whip-wines-white?variant=45061912854755,
+/assets/wines/ifonly_whiteNatural_40_CrookedDrinks.png, /assets/wines/ifonly_whiteNatural_40_CrookedDrinks_BACK.png, 'if only maybe', funky, 40, https://crookeddrinks.com.au/collections/white-wine/products/momento-mori-everything-is-free-nero-d-avola-moscato-giallo-2022-copy?variant=45563198439651
+/assets/wines/meredith_whiteNatural_34_CrookedDrinks.png,, 'Meredith', funky, 34, https://crookeddrinks.com.au/collections/white-wine/products/meredith-by-mem-carry-the-one-chenin-blanc?variant=45061910528227
+/assets/wines/minim_whiteNatural_43_CrookedDrinks.png, /assets/wines/minim_whiteNatural_43_CrookedDrinks_BACK.png, 'Minim Wines', funky, 43, https://crookeddrinks.com.au/collections/white-wine/products/minim-wines-xo-riesling?variant=45061910855907
+/assets/wines/ocean_naturalWhite_52_CrookedDrinks.png,, 'Aunt Alice ocean', funky, 52, https://crookeddrinks.com.au/collections/white-wine/products/aunt-alice-ocean-chardonnay?variant=45061907349731
+/assets/wines/paleBlueEyes_whiteNatural_43_CrookedDrinks.png,, 'Defialy Pale Blue Eyes', funky, 43, https://crookeddrinks.com.au/collections/white-wine/products/defialy-pale-blue-eyes-savagnin-2023?variant=45589300904163
+/assets/wines/Pizzini_redNatural_65_dm.png,,'Pizzini Il Barone', normal, 65, https://www.danmurphys.com.au/product/DM_456943/pizzini-il-barone?isFromSearch=true&isPersonalised=false&isSponsored=false&state=12&pageName=category_page
+/assets/wines/pizzini_white_26_dm.png,, 'Pizzini Arneis', normal, 26, https://www.danmurphys.com.au/product/DM_908056/pizzini-arneis?isFromSearch=true&isPersonalised=false&isSponsored=false&state=3&pageName=category_page
+/assets/wines/rockygully_white_26_blackSparrow.png,, 'Frankland Estate Rocky Gully Riesling', normal, 26, https://www.blackheartsandsparrows.com.au/products/2148/frankland-estate-rocky-gully-riesling-2024
+/assets/wines/werksatt_white_38_CrookedDrinks.png,,'Werkstatt Riesling', normal, 38, https://crookeddrinks.com.au/collections/white-wine/products/worlds-apart-in-the-flowers-riesling-2023-copy?variant=45589175271651 
+/assets/wines/bowlers_white_3_5_dm.png,, 'Bowler's run semillon sauvignon blanc', normal, 3.5, https://www.danmurphys.com.au/product/DM_342073/bowler-s-run-semillon-sauvignon-blanc?isFromSearch=true&isPersonalised=false&isSponsored=false&state=5&pageName=category_page, 
+/assets/wines/bowlers_red_3_5_dm.png,, 'Bowler's run merlot', normal, 3.5,https://www.danmurphys.com.au/product/DM_330324/bowler-s-run-cabernet-merlot?isFromSearch=true&isPersonalised=false&isSponsored=false&state=6&pageName=category_page, 
+/assets/wines/mojo03_red_20_liqland.png,, 'Mojo03', normal, 20, https://www.liquorland.com.au/red-wine/mojo-cabernet-sauvignon-750ml_3855151, 
+/assets/wines/tempranillo_red_19_dm.png,, 'Brown Brothers Refreshing Tempranillo', normal, 19, https://www.danmurphys.com.au/product/DM_260638/brown-brothers-refreshing-tempranillo?isFromSearch=false&isPersonalised=false&isSponsored=false&state=33&pageName=member_offers

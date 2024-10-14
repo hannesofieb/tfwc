@@ -19,7 +19,7 @@ html, body {
     position: relative;
     width: 1920px; /* Set fixed width to match original image size */
     height: 1080px; /* Set fixed height to match original image size */
-    background-image: url('assets/landing/landingpage4web.jpg'); /* Background image */
+    background-image: url('assets/landing/landingpage.jpg'); /* Background image */
     background-size: cover; /* Cover ensures the entire div has the background */
     background-position: center;
 }
@@ -63,12 +63,12 @@ html, body {
 .logo{
     position: absolute; /* Allowing for exact positioning on top of the background */
     cursor: pointer;
-    width: 13.5%;
+    width: 14.3%;
     transition: transform 0.3s ease-in-out; /* Smooth hover animation */
 
 }
 
 .logo:hover {
-    transform: scale(1.01); /* Make the item slightly bigger on hover */
+    transform: scale(1.1); /* Make the item slightly bigger on hover */
     cursor: help;
 }

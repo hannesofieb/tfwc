@@ -7,57 +7,42 @@
     <link rel="stylesheet" href="https://use.typekit.net/dpb5poe.css">
     <link rel="stylesheet" href="https://use.typekit.net/dpb5poe.css">
 
-    <link rel="stylesheet" href="winestyles.css">
-    <title>tfwc</title>
+    <link rel="stylesheet" href="wines.css">
+    <title>wines test</title>
 </head>
 <body>
-    <div id="wrap">
-        <svg id="viewportBorder" version="1.1" viewBox="0 0 1000 550">
-            <!-- Define a rectangular path with rounded corners -->
-            <path id="borderPath" fill="none" 
-                  d="M50,20 
-                     H950 
-                     A30,30 0 0 1 980,50
-                     V495 
-                     A30,30 0 0 1 950,525
-                     H50 
-                     A30,30 0 0 1 20,495
-                     V50 
-                     A30,30 0 0 1 50,20 Z" />
-        
-            <text stroke="#000000" font-family="Arial, sans-serif" font-size="12">
-                <textPath id="tp" xlink:href="#borderPath" startOffset="0" dy="1">
-                    These wines just have some really cool labels that I love. Two of them actually inspired this webpage layout — can you guess which ones? Anyways, these can either be found in your local bottle shop, or they might send you to an adventure to one of the cool wine bars that you might have looked at at the vinographical map I’ve also made. So have a look and see if you find anything you might like (the look of). Prices range from cheap to splurge.
-                    
-                    <!-- Animate the text along the path -->
-                    <animate attributeName="startOffset" from="0%" to="100%" begin="0s" dur="20s" repeatCount="indefinite"></animate>
-                </textPath>
-            </text>
 
-            <!-- Top-center text -->
-            <text x="50%" y="50" text-anchor="middle" font-size="24" fill="blue" class="custom-font">
-                WINES BY COOL LABELS
-            </text>
 
-            <!-- Bottom-center text -->
-            <text x="50%" y="515" text-anchor="middle" font-size="24" fill="blue" class="custom-font">
-                I ALSO CATALOGUED GOON
-            </text>
-        </svg>
+    <div class="top-text">
+        welcome to the wine cellar. Find something you fancy and enjoy
     </div>
 
-
-    <div class="main">
-        <div class="sort">
-            <button>expensive</button>
-            <button>cheap</button> 
+    <div class="wrapper">
+        <div class="left-text">
+            carpe vinum
         </div>
 
-        <section class="wines"></section> 
-        <div class="sort">
-            <button>classic</button>
-            <button>funky</button> 
+        <section class="main">
+            <div class="sort">
+                <button>cheap</button> 
+                <a href="landing.html"><div class="logo">The fictional <br> wine club</div></a>
+                <button>expensive</button>
+            </div>
+    
+            <section class="wines"></section> 
+            
+            <div class="sort">
+                <button>classic</button>
+                <button>funky</button> 
+            </div>
+        </section>
+        <div class="right-text">
+            placement text here that might rotate in some way but idk
         </div>
+    </div>
+
+    <div class="bottom-text">
+        placement text here that is supposed to move maybe
     </div>
     
 

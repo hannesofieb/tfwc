@@ -1,55 +1,53 @@
-// Function to load CSV file and populate the wines section
+// Fisher-Yates Shuffle Algorithm
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 function loadCSVAndDisplayWines() {
     Papa.parse("wines.csv", {
         download: true,
-        header: true, // Adjust according to whether your CSV has headers
+        header: true,
         complete: function(results) {
             // Parse the CSV data
             const winesData = results.data;
 
+            // Shuffle the wines data to make it random
+            shuffleArray(winesData);
+
             // Select the wines section
             const winesSection = document.querySelector('.wines');
 
+            // Clear any previous content in the wines section
+            winesSection.innerHTML = '';
+
             // Generate HTML content for each wine
             winesData.forEach(wine => {
-                // Create a wine card for each wine entry
-                const wineHTML = `
-                    <div class="wine-card">
-                        <img src="${wine.front}" alt="${wine.name}" class="wine-img">
-                    </div>
-                `;
-                
-
-                // Append the wine card to the wines section
-                winesSection.innerHTML += wineHTML;
+                // Check if the wine entry has a valid front image URL
+                if (wine.front && wine.front.trim() !== '') {
+                    // Create a wine card for each valid wine entry
+                    const wineHTML = `
+                        <div class="wine-card">
+                            <img src="${wine.front}" alt="${wine.name}" class="wine-img" data-front="${wine.front}" data-back="${wine.back}">
+                        </div>
+                    `;
+                    // Append the wine card to the wines section
+                    winesSection.innerHTML += wineHTML;
+                } else {
+                    console.warn(`Skipping wine with missing front image:`, wine);
+                }
             });
+
+            // Add hover effect to wines after adding them to DOM
+            addHoverEffectToWines();
         }
     });
 }
 
-// Function to add hover effect for front and back images
-function addHoverEffectToWines() {
-    const wineCards = document.querySelectorAll('.wine-card');
 
-    wineCards.forEach(card => {
-        const wineImg = card.querySelector('.wine-img');
-        const frontImg = wineImg.getAttribute('data-front');
-        const backImg = wineImg.getAttribute('data-back');
 
-        // Check if backImg is valid and not an empty string
-        if (backImg && backImg.trim() !== '') {
-            card.addEventListener('mouseenter', () => {
-                console.log(`Switching to back image: ${backImg.trim()}`);
-                wineImg.src = backImg.trim(); // Swap to back image on hover
-            });
-        
-            card.addEventListener('mouseleave', () => {
-                console.log(`Switching back to front image: ${frontImg}`);
-                wineImg.src = frontImg; // Swap back to front image on leave
-            });
-        }
-    });
-}
 
 
 // Load and display the wines when the document is ready
