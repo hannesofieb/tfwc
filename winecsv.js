@@ -91,6 +91,9 @@ function loadCSVAndDisplayWines() {
         const funkyWines = filterByType(winesData, 'funky'); // Filter by 'funky' wines
         displayWines(funkyWines);
     });
+
+    console.log(wine.front);  // Log the image path to see if it matches the expected URL
+
 }
 
 // Load and display the wines when the document is ready
