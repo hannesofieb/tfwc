@@ -1,98 +1,166 @@
-
 html, body {
     margin: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
     background-color: var(--white-warm);
+    overflow: hidden;
 }
 
 body {
-    font-family: "Arimo", sans-serif;
     display: flex;
     flex-direction: column;
 }
 
-.top-text, .bottom-text, .left-text, .right-text{
-    padding: 1% 1%;
-    color: var(--white-warm);
-    background-color: var(--blue-grey);
-    font-size: 1em;
-    text-transform: uppercase;
-    font-style: italic;
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
     overflow: hidden;
 }
 
-.wrapper{
+.wine-section {
     display: flex;
     flex-direction: row;
 }
 
-.left-text{
-    writing-mode:vertical-rl;
-    transform: rotate(180deg); /* Flips the text to read from bottom to top */
+.wine-info {
+    width: 30vw;
+    height: 70vh;
+    padding-bottom: 40px;
+    background-color: var(--red-orange);
 }
 
-.right-text{
-    writing-mode: vertical-rl;
-}
-
-.main{
-    height: 85vh;
-    margin: 0 3% 2% 3%;
+.wines-container {
+    width: 70vw;
+    height: 70vh;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    background-color: var(--seafoam);
 }
 
-.sort{
+.sort {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* padding-bottom: 2%; */
+    margin: 2%;
 }
 
 .wines {
+    width: 100%;
+    height: 85%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
+    flex-direction: row;
+    flex-wrap: wrap; /* allow wrapping if too many cards */
+    justify-content: space-evenly;
+    gap: 10px; /* space between wine cards */
     overflow: hidden;
-    /* row-gap: 15px; */
-    column-gap: 20px;
-    justify-content: space-around;
-    transform: scale(.9);
-    background-color: var(--blue-grey);
 }
 
 .wine-card {
-    width: 50%;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s;
-    margin-bottom: 2%;
-}
-
-.wine-card:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
+    height: 50%; /* Adjust height as needed */
+    position: relative;
+    padding: 0 5px;
+    overflow: hidden; /* Hide overflow if image exceeds container */
 }
 
 .wine-img {
-    object-fit: cover;
-    padding: 5%;
-
+    height: 90%;
+    object-fit: cover; /* Ensure the image covers the card without distortion */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    /* Center the image */
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center image inside its container */
 }
 
-a{
-    text-decoration: none;
+.wine-img:hover {
+    transform: translate(-50%, -50%) scale(1.05); /* Ensure the scaling happens from the center */
 }
 
-.logo{
-    font-family: var(--logo-font);
-    font-weight: 300;
-    text-align: center;
+
+
+.wine-info {
+    position: relative;
+    width: 30vw;
+    height: 70vh;
+    padding-bottom: 40px;
+    overflow: hidden;
+    background-color: var(--red-orange);
+    color: var(--seafoam);
+    font-family: var(--main-font);
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bottle-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.wine-img-hover {
+    width: 100%;
+    height: auto;
+}
+
+.comment {
+    margin-top: 20px;
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price {
     font-size: 2em;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+.info {
+    height: 26vh;
+    overflow: hidden;
+    background-color: var(--white-warm);
+    display: inline-block;
+    font-family: var(--blue);
+    font-size: 3.2vw;
+    color: #84782c;
+}
+
+.icon {
+    width: 40px;
+    height: auto;
+}
+
+.icon:hover {
+    transform: scale(1.1); /* Make the item slightly bigger on hover */
+}
+
+a {
+    text-decoration: none;
+    font-family: var(--logo-font);
+    text-transform: uppercase;
     color: var(--olive);
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: var(--olive);
+}
+
+p {
+    margin: 15px;
 }
 
 button {
@@ -103,13 +171,15 @@ button {
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 600;
+    border: 2px solid #ffffff00;
 }
 
-button:hover{
-    font-family: var(--logo-font);
-    font-weight: 400;
+button:focus {
+    border: 2px solid var(--red-orange);
+    border-radius: 50%;
 }
 
-button:focus{
-    text-decoration:line-through;
+button:hover {
+    border: 2px solid var(--red-orange);
+    border-radius: 50%;
 }

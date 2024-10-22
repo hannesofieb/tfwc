@@ -10,42 +10,36 @@
     <link rel="stylesheet" href="wines.css">
     <title>wines test</title>
 </head>
-<body>
+    <main>
+        <section class="wine-section">
+            <section class="wine-info">
+                <div class="comment"></div>
+                <div class="price"></div>
+                <div class="bottle-img"></div>
+            </section>
 
-
-    <div class="top-text">
-        welcome to the wine cellar. Find something you fancy and enjoy
-    </div>
-
-    <div class="wrapper">
-        <div class="left-text">
-            carpe vinum
-        </div>
-
-        <section class="main">
-            <div class="sort">
-                <button>cheap</button> 
-                <a href="landing.html"><div class="logo">The fictional <br> wine club</div></a>
-                <button>expensive</button>
-            </div>
-    
-            <section class="wines"></section> 
-            
-            <div class="sort">
-                <button>classic</button>
-                <button>funky</button> 
-            </div>
+            <section class="wines-container">
+                <div class="sort">
+                    <button id="sort-cheap">Cheap</button> 
+                    <button id="sort-expensive">Expensive</button>
+                </div>
+                <section class="wines">
+                    <div class="suggestion wine-card"></div>
+                </section> 
+                <div class="sort">
+                    <button id="filter-classic">Classic</button>
+                    <button id="filter-funky">Funky</button> 
+                </div>
+            </section>
         </section>
-        <div class="right-text">
-            placement text here that might rotate in some way but idk
-        </div>
-    </div>
 
-    <div class="bottom-text">
-        placement text here that is supposed to move maybe
-    </div>
-    
-
+        <section class="info">
+            <p>Carpe Vinum and try something new of 
+                <a class="logo-font" href="landing.html">The Fictional Wine Club</a>
+                fresh wine collection! A variety of different wines from anything from conventional to funky bottle shops, to cool wine bars around the city. 
+            </p> 
+        </section>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="winecsv.js"></script>
