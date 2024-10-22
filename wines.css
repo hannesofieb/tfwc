@@ -138,7 +138,7 @@ body {
     display: inline-block;
     font-family: var(--blue);
     font-size: 3.2vw;
-    color: #84782c;
+    color: var(--olive);
 }
 
 .icon {
@@ -154,9 +154,13 @@ a {
     text-decoration: none;
     font-family: var(--logo-font);
     text-transform: uppercase;
-    color: var(--olive);
+    color: #5d4225;
     -webkit-text-stroke-width: 1.5px;
-    -webkit-text-stroke-color: var(--olive);
+    -webkit-text-stroke-color: #5d4225;
+}
+
+a:hover{
+    -webkit-text-stroke-width: 3px;
 }
 
 p {
