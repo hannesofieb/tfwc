@@ -10,7 +10,6 @@ function shuffleArray(array) {
 
 // Function to sort wines by price
 function sortByPrice(wines, ascending = true) {
-    // Ensure prices are numbers, and filter out wines with no price
     const filteredWines = wines.filter(wine => wine.price !== null && !isNaN(wine.price));
     return filteredWines.sort((a, b) => ascending ? a.price - b.price : b.price - a.price);
 }
@@ -20,17 +19,15 @@ function filterByType(wines, type) {
     return wines.filter(wine => wine.funkyNormal === type);
 }
 
-// Function to display wines
 function displayWines(wines) {
     const winesSection = document.querySelector('.wines');
     winesSection.innerHTML = ''; // Clear the section
 
     wines.forEach(wine => {
-        // Validate wine data: check if it has a valid front image and price
         if (wine.front && wine.front.trim() !== '' && wine.price !== null) {
             const wineHTML = `
                 <div class="wine-card">
-                    <img src="${wine.front}" alt="${wine.name}" class="wine-img" data-link="${wine.link}">
+                    <img src="${wine.front}" alt="${wine.name}" class="wine-img" data-link="${wine.link}" draggable="true" data-name="${wine.name}" data-type="${wine.funkyNormal}" data-price="${wine.price}" data-front="${wine.front}" data-comment="${wine.comment}">
                 </div>
             `;
             winesSection.innerHTML += wineHTML;
@@ -39,64 +36,91 @@ function displayWines(wines) {
         }
     });
 
-    // Add click event to each wine card
+    // Add event listeners to each wine card
     document.querySelectorAll('.wine-img').forEach(img => {
+        // Add click event to open the link in a new tab
         img.addEventListener('click', function() {
             window.open(this.dataset.link, '_blank');
+        });
+
+        // Add hover event to display info in wine-info section
+        img.addEventListener('mouseenter', function() {
+            const wineInfoSection = document.querySelector('.wine-info');
+            const bottleImgContainer = wineInfoSection.querySelector('.bottle-img');
+            const commentElement = wineInfoSection.querySelector('.comment');
+            const priceElement = wineInfoSection.querySelector('.price');
+
+            // Extracting the necessary data attributes
+            const wineFront = this.dataset.front;
+            const wineComment = this.dataset.comment;
+            const winePrice = this.dataset.price;
+
+            // Display the wine image in the center
+            bottleImgContainer.innerHTML = `<img src="${wineFront}" alt="${this.dataset.name}" class="wine-img-hover">`;
+
+            // Update comment and price
+            commentElement.textContent = wineComment;
+            priceElement.textContent = `$${parseFloat(winePrice).toFixed(2)}`;
+        });
+
+        // Clear hover info when mouse leaves the image
+        img.addEventListener('mouseleave', function() {
+            const wineInfoSection = document.querySelector('.wine-info');
+            const bottleImgContainer = wineInfoSection.querySelector('.bottle-img');
+            const commentElement = wineInfoSection.querySelector('.comment');
+            const priceElement = wineInfoSection.querySelector('.price');
+
+            // Clear the wine info
+            bottleImgContainer.innerHTML = '';
+            commentElement.textContent = '';
+            priceElement.textContent = '';
         });
     });
 }
 
+// Function to load CSV and display wines
 function loadCSVAndDisplayWines() {
     Papa.parse("wines.csv", {
         download: true,
         header: true,
         complete: function(results) {
             winesData = results.data.map(wine => {
-                // Ensure price is parsed as a number, and set to null if invalid
                 const price = parseFloat(wine.price);
                 return {
                     ...wine,
-                    price: !isNaN(price) ? price : null,  // Handle invalid prices as null
+                    price: !isNaN(price) ? price : null,
                 };
             });
 
-            console.log('Parsed Wines Data:', winesData); // Debugging output
-
-            // Shuffle the wines data to randomize display
             shuffleArray(winesData);
-
-            // Display all the wines in random order
             displayWines(winesData);
         }
     });
 
     // Event listeners for sorting/filtering
     document.getElementById('sort-cheap').addEventListener('click', () => {
-        const sortedWines = sortByPrice([...winesData], true); // Sort in ascending order
+        const sortedWines = sortByPrice([...winesData], true);
         displayWines(sortedWines);
     });
 
     document.getElementById('sort-expensive').addEventListener('click', () => {
-        const sortedWines = sortByPrice([...winesData], false); // Sort in descending order
+        const sortedWines = sortByPrice([...winesData], false);
         displayWines(sortedWines);
     });
 
     document.getElementById('filter-classic').addEventListener('click', () => {
-        const classicWines = filterByType(winesData, 'normal'); // Filter by 'normal' wines
+        const classicWines = filterByType(winesData, 'normal');
         displayWines(classicWines);
     });
 
     document.getElementById('filter-funky').addEventListener('click', () => {
-        const funkyWines = filterByType(winesData, 'funky'); // Filter by 'funky' wines
+        const funkyWines = filterByType(winesData, 'funky');
         displayWines(funkyWines);
     });
-
-    console.log(wine.front);  // Log the image path to see if it matches the expected URL
-
 }
 
 // Load and display the wines when the document is ready
 document.addEventListener("DOMContentLoaded", function() {
     loadCSVAndDisplayWines();
+    setupDropArea();
 });

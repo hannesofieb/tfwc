@@ -75,6 +75,58 @@ body {
     transform: translate(-50%, -50%) scale(1.05); /* Ensure the scaling happens from the center */
 }
 
+
+
+.wine-info {
+    position: relative;
+    width: 30vw;
+    height: 70vh;
+    overflow: hidden;
+    background-color: var(--red-orange);
+    color: var(--seafoam);
+    font-family: var(--main-font);
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bottle-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.wine-img-hover {
+    width: 100%;
+    height: auto;
+}
+
+.comment {
+    margin-top: 20px;
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price {
+    font-size: 2em;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
 .info {
     height: 30vh;
     overflow: hidden;

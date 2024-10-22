@@ -1,19 +1,19 @@
 front,name,funkyNormal,price,link,comment
-/tfwc/assets/wines/bianco-dritto_orange_75_ccmelb.png,'BiancoDritto',funky,75,https://www.instagram.com/ccmelbourne/,
-/tfwc/assets/wines/verde_whiteNATURAL_29_blacksparrow.png,'VerdeSemillon',funky,29,https://www.blackheartsandsparrows.com.au/products/37689/pool-wines-verde-semillon-2024,
-/tfwc/assets/wines/littleReddie_white_14_35_goodM.png,'Littlereddie',normal,35,https://www.instagram.com/goodmeasuremelbourne/,
-/tfwc/assets/wines/acidacid_earthAngels.png,'ACIDACID',funky,,https://www.earthangels.bar/,
-/tfwc/assets/wines/WhipWines_whiteNatural_32_crookedDr.png,'WhipWinesWhite',funky,32,https://crookeddrinks.com.au/products/whip-wines-white?variant=45061912854755,
-/tfwc/assets/wines/ifonly_whiteNatural_40_CrookedDrinks.png,'ifonlymaybe',funky,40,https://crookeddrinks.com.au/collections/white-wine/products/momento-mori-everything-is-free-nero-d-avola-moscato-giallo-2022-copy?variant=45563198439651
-/tfwc/assets/wines/meredith_whiteNatural_34_CrookedDrinks.png,'Meredith',funky,34,https://crookeddrinks.com.au/collections/white-wine/products/meredith-by-mem-carry-the-one-chenin-blanc?variant=45061910528227
-/tfwc/assets/wines/minim_whiteNatural_43_CrookedDrinks.png,'MinimWines',funky,43,https://crookeddrinks.com.au/collections/white-wine/products/minim-wines-xo-riesling?variant=45061910855907
-/tfwc/assets/wines/ocean_naturalWhite_52_CrookedDrinks.png,'AuntAliceocean',funky,52,https://crookeddrinks.com.au/collections/white-wine/products/aunt-alice-ocean-chardonnay?variant=45061907349731
-/tfwc/assets/wines/paleBlueEyes_whiteNatural_43_CrookedDrinks.png,'DefialyPaleBlueEyes',funky,43,https://crookeddrinks.com.au/collections/white-wine/products/defialy-pale-blue-eyes-savagnin-2023?variant=45589300904163
-/tfwc/assets/wines/Pizzini_redNatural_65_dm.png,'PizziniIlBarone',normal,65,https://www.danmurphys.com.au/product/DM_456943/pizzini-il-barone?isFromSearch=true&isPersonalised=false&isSponsored=false&state=12&pageName=category_page
-/tfwc/assets/wines/pizzini_white_26_dm.png,'PizziniArneis',normal,26,https://www.danmurphys.com.au/product/DM_908056/pizzini-arneis?isFromSearch=true&isPersonalised=false&isSponsored=false&state=3&pageName=category_page
-/tfwc/assets/wines/rockygully_white_26_blackSparrow.png,'FranklandEstateRockyGullyRiesling',normal,26,https://www.blackheartsandsparrows.com.au/products/2148/frankland-estate-rocky-gully-riesling-2024
-/tfwc/assets/wines/werksatt_white_38_CrookedDrinks.png,'WerkstattRiesling',normal,38,https://crookeddrinks.com.au/collections/white-wine/products/worlds-apart-in-the-flowers-riesling-2023-copy?variant=45589175271651
-/tfwc/assets/wines/bowlers_white_3_5_dm.png,'Bowler'srunsemillonsauvignonblanc',normal,3.5,https://www.danmurphys.com.au/product/DM_342073/bowler-s-run-semillon-sauvignon-blanc?isFromSearch=true&isPersonalised=false&isSponsored=false&state=5&pageName=category_page,
-/tfwc/assets/wines/bowlers_red_3_5_dm.png,'Bowler'srunmerlot',normal,3.5,https://www.danmurphys.com.au/product/DM_330324/bowler-s-run-cabernet-merlot?isFromSearch=true&isPersonalised=false&isSponsored=false&state=6&pageName=category_page,
-/tfwc/assets/wines/mojo03_red_20_liqland.png,'Mojo03',normal,20,https://www.liquorland.com.au/red-wine/mojo-cabernet-sauvignon-750ml_3855151,
-/tfwc/assets/wines/tempranillo_red_19_dm.png,'BrownBrothersRefreshingTempranillo',normal,19,https://www.danmurphys.com.au/product/DM_260638/brown-brothers-refreshing-tempranillo?isFromSearch=false&isPersonalised=false&isSponsored=false&state=33&pageName=member_offers
+/assets/wines/bianco-dritto_orange_75_ccmelb.png,'BiancoDritto',funky,75,https://www.instagram.com/ccmelbourne/,'orange fresh coolgirl'
+/assets/wines/verde_whiteNATURAL_29_blacksparrow.png,'VerdeSemillon',funky,29,https://www.blackheartsandsparrows.com.au/products/37689/pool-wines-verde-semillon-2024,'orange dinner w the girls'
+/assets/wines/littleReddie_white_14_35_goodM.png,'Littlereddie',normal,35,https://www.instagram.com/goodmeasuremelbourne/,'white easy music'
+/assets/wines/acidacid_earthAngels.png,'ACIDACID',funky,,https://www.earthangels.bar/,'cool date vibes'
+/assets/wines/WhipWines_whiteNatural_32_crookedDr.png,'WhipWinesWhite',funky,32,https://crookeddrinks.com.au/products/whip-wines-white?variant=45061912854755,'natural funky fresh'
+/assets/wines/ifonly_whiteNatural_40_CrookedDrinks.png,'ifonlymaybe',funky,40,https://crookeddrinks.com.au/collections/white-wine/products/momento-mori-everything-is-free-nero-d-avola-moscato-giallo-2022-copy?variant=45563198439651,'orangecello grapefruit soda'
+/assets/wines/meredith_whiteNatural_34_CrookedDrinks.png,'Meredith',funky,34,https://crookeddrinks.com.au/collections/white-wine/products/meredith-by-mem-carry-the-one-chenin-blanc?variant=45061910528227,'martini with a lemon twist'
+/assets/wines/minim_whiteNatural_43_CrookedDrinks.png,'MinimWines',funky,43,https://crookeddrinks.com.au/collections/white-wine/products/minim-wines-xo-riesling?variant=45061910855907,'pear blossom slaps'
+/assets/wines/ocean_naturalWhite_52_CrookedDrinks.png,'AuntAliceocean',funky,52,https://crookeddrinks.com.au/collections/white-wine/products/aunt-alice-ocean-chardonnay?variant=45061907349731,'mysterious grapefruit bread'
+/assets/wines/paleBlueEyes_whiteNatural_43_CrookedDrinks.png,'DefialyPaleBlueEyes',funky,43,https://crookeddrinks.com.au/collections/white-wine/products/defialy-pale-blue-eyes-savagnin-2023?variant=45589300904163,'decorative yeasty boy'
+/assets/wines/Pizzini_redNatural_65_dm.png,'PizziniIlBarone',normal,65,https://www.danmurphys.com.au/product/DM_456943/pizzini-il-barone?isFromSearch=true&isPersonalised=false&isSponsored=false&state=12&pageName=category_page,'hot people buy this'
+/assets/wines/pizzini_white_26_dm.png,'PizziniArneis',normal,26,https://www.danmurphys.com.au/product/DM_908056/pizzini-arneis?isFromSearch=true&isPersonalised=false&isSponsored=false&state=3&pageName=category_page,'crisp apple good time'
+/assets/wines/rockygully_white_26_blackSparrow.png,'FranklandEstateRockyGullyRiesling',normal,26,https://www.blackheartsandsparrows.com.au/products/2148/frankland-estate-rocky-gully-riesling-2024,'classic minimalist hot date'
+/assets/wines/werksatt_white_38_CrookedDrinks.png,'WerkstattRiesling',normal,38,https://crookeddrinks.com.au/collections/white-wine/products/worlds-apart-in-the-flowers-riesling-2023-copy?variant=45589175271651,'sound of music liquid'
+/assets/wines/bowlers_white_3_5_dm.png,'Bowler'srunsemillonsauvignonblanc',normal,3.5,https://www.danmurphys.com.au/product/DM_342073/bowler-s-run-semillon-sauvignon-blanc?isFromSearch=true&isPersonalised=false&isSponsored=false&state=5&pageName=category_page,'ugly budget gold'
+/assets/wines/bowlers_red_3_5_dm.png,'Bowler'srunmerlot',normal,3.5,https://www.danmurphys.com.au/product/DM_330324/bowler-s-run-cabernet-merlot?isFromSearch=true&isPersonalised=false&isSponsored=false&state=6&pageName=category_page,'ugly budget ruby'
+/assets/wines/mojo03_red_20_liqland.png,'Mojo03',normal,20,https://www.liquorland.com.au/red-wine/mojo-cabernet-sauvignon-750ml_3855151,'basic drink w girls'
+/assets/wines/tempranillo_red_19_dm.png,'BrownBrothersRefreshingTempranillo',normal,19,https://www.danmurphys.com.au/product/DM_260638/brown-brothers-refreshing-tempranillo?isFromSearch=false&isPersonalised=false&isSponsored=false&state=33&pageName=member_offers,'in an experimental phase'
