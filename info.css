@@ -20,7 +20,7 @@ p {
 }
 
 h1 {
-    font-family: var(--condensed-font);
+    font-family: var(--main-font);
     font-size: 4em;
     color: #b93751;
     text-transform: uppercase;
@@ -30,7 +30,7 @@ a {
     margin: 50em 0 0 1em;
     color: #b93751;
     font-size: 1em;
-    font-family: var(--condensed-font);
+    font-family: var(--main-font);
 }
 
 .box {

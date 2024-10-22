@@ -57,16 +57,15 @@ body {
     flex-wrap: wrap;
     justify-content: left;
     overflow: hidden;
-    margin: 0 15%;
     /* row-gap: 15px; */
     column-gap: 20px;
     justify-content: space-around;
-    transform: scale(.9); /* Slight zoom on hover */
-
+    transform: scale(.9);
+    background-color: var(--blue-grey);
 }
 
 .wine-card {
-    width: 10%;
+    width: 50%;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s;

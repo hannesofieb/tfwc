@@ -1,28 +1,30 @@
 :root{
     --logo-font: "livory", serif;
-    --condensed-font: "kensington", sans-serif;
+    --main-font: "Helvetica", sans-serif;
     --burgundy: #582b31;
     --ruby: #b93751;
     --white: #f7f4ed;
     --white-warm: #eae7df;
     --beige: #EAE1C6;
-    --seafoam: #A9C6CC;
+    --seafoam: #a9ccca;
     --olive: #988a2c;
     --blue: #3740c5;
     --blue-grey: #869daa;
-    --red-orange: #E35A37;
+    --red-orange: #e14620;
 }
 
 .logo-font{
     font-family: var(--logo-font);
+    font-style: italic;
+    /* font-weight: 700; */
 }
 
 .custom-font {
-    font-family: var(--condensed-font);
+    font-family: var(--main-font);
     font-weight: 500;
     font-style: normal; 
 }
 
 p{
-    font-family: var(--condensed-font);
+    font-family: var(--main-font);
 }
