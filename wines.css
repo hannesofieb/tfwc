@@ -112,13 +112,13 @@ body {
 
 .comment {
     margin-top: 20px;
-    font-size: 4em;
+    font-size: 4vw;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     width: 100%;
     flex-grow: 1;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
 }
 
@@ -134,11 +134,11 @@ body {
 .info {
     height: 26vh;
     overflow: hidden;
-    background-color: var(--white-warm);
+    background-color: var(--olive);
     display: inline-block;
     font-family: var(--blue);
     font-size: 3.2vw;
-    color: var(--olive);
+    color: var(--white-warm);
 }
 
 .icon {
