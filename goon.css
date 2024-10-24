@@ -56,6 +56,12 @@ html, body {
     padding: 10px;
     width: 20px;
     height: auto;
+    transition: transform 0.3s ease; /* Optional: Add a smooth transition */
+    transform-origin: top left; /* Set the origin for the transform to the top-left corner */
+}
+
+.suggestion-box:hover{
+    transform: scale(10);
 }
 
 .goon-card {
@@ -66,7 +72,7 @@ html, body {
     width: 20px;
 }
 
-.goon-card:hover {
+.goon-card:hover{
     transform: scale(10);
 }
 
