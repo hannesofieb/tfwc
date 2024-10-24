@@ -1,7 +1,8 @@
 html, body {
     margin: 0;
     height: 100%;
-    background-color: var(--white-warm);
+    background-color: var(--midnight);
+    overflow: hidden;
 }
 
 .goon-background {
@@ -11,13 +12,13 @@ html, body {
 }
 
 /* .text-background {
-    z-index: 0;
+    z-index: -2;
     position: relative;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--midnight);
+    background-color: var(--white-warm);
     color: var(--seafoam);
     font-family: var(--main-font);
     text-transform: uppercase;
@@ -39,7 +40,7 @@ html, body {
 .goons-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    /* gap: 20px; */
     justify-content: space-between;  /* Ensure the goon-cards are spaced properly */
     align-items: flex-start;
     width: 95%;                      /* Set the width for goon-cards */
@@ -53,7 +54,7 @@ html, body {
 
 .suggestion-box {
     padding: 10px;
-    width: 50px;
+    width: 20px;
     height: auto;
 }
 
@@ -62,11 +63,11 @@ html, body {
     text-align: center;
     transition: transform 0.2s;
     padding: 10px;
-    width: 50px;
+    width: 20px;
 }
 
 .goon-card:hover {
-    transform: scale(1.05);
+    transform: scale(10);
 }
 
 .goon-image {
