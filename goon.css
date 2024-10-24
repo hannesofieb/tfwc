@@ -1,44 +1,84 @@
 html, body {
     margin: 0;
+    height: 100%;
     background-color: var(--white-warm);
-    overflow: hidden;
 }
 
-.text-background {
+.goon-background {
+    position: relative;
+    height: 100%;
+    /* overflow: hidden; */
+}
+
+/* .text-background {
     z-index: 0;
     position: relative;
     height: 100vh;
-    overflow: hidden;
-    flex-grow: 1;
     display: flex;
-    align-items: top;
+    align-items: center;
     justify-content: center;
-    background-color: var(--red-orange);
+    background-color: var(--midnight);
     color: var(--seafoam);
     font-family: var(--main-font);
     text-transform: uppercase;
-    font-size: 4em;
+    font-size: 1em;
     font-weight: bold;
     text-align: left;
-}
+    padding: 20px;
+} */
 
-.goons{
-    z-index: 5;
+.grid {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.suggestion-box{
-    z-index: 5;
-    height: 100vh;
-    background-color: blue;
+.goons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;  /* Ensure the goon-cards are spaced properly */
+    align-items: flex-start;
+    width: 95%;                      /* Set the width for goon-cards */
+    height: 100%;                    /* Fill the height of the grid */
+    margin: auto;                    /* Center horizontally */
+    overflow: auto;                  /* Allow scrolling if there are many cards */
+    position: relative;
+    overflow: hidden;
+
 }
-.god-of-goon{
+
+.suggestion-box {
+    padding: 10px;
+    width: 50px;
+    height: auto;
+}
+
+.goon-card {
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s;
+    padding: 10px;
+    width: 50px;
+}
+
+.goon-card:hover {
+    transform: scale(1.05);
+}
+
+.goon-image {
+    width: 100%;
+    height: auto;
+}
+
+
+.god-of-goon {
     z-index: 10;
     position: absolute;
-    height: 50vh;
-    width: 30vw;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100;
 }
