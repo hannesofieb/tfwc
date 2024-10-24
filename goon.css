@@ -25,7 +25,6 @@ html, body {
 .goons{
     z-index: 5;
     display: flex;
-    flex
 }
 
 .suggestion-box{
