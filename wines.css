@@ -31,7 +31,7 @@ body {
 
 .wines-container {
     width: 70vw;
-    height: 70vh;
+    height: 84vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -83,7 +83,7 @@ body {
 .wine-info {
     position: relative;
     width: 30vw;
-    height: 70vh;
+    height: 84vh;
     padding-bottom: 40px;
     overflow: hidden;
     background-color: var(--red-orange);
@@ -132,7 +132,8 @@ body {
 
 
 .info {
-    height: 26vh;
+    height: 12vh;
+    width: 100%;
     overflow: hidden;
     background-color: var(--olive);
     display: inline-block;
@@ -154,6 +155,7 @@ a {
     text-decoration: none;
     font-family: var(--logo-font);
     text-transform: uppercase;
+    text-align: center;
     color: #5d4225;
     -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: #5d4225;
@@ -165,6 +167,8 @@ a:hover{
 
 p {
     margin: 15px;
+    text-align: center;
+    /* text-transform: uppercase; */
 }
 
 button {

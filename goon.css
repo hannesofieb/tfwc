@@ -5,10 +5,21 @@ html, body {
     overflow: hidden;
 }
 
+.back {
+    position: fixed; /* Ensure the red box stays on the left side */
+    top: 0;
+    left: 0;
+    width: 50px; /* Adjust width as needed */
+    height: 100%; /* Full height of the viewport */
+    background-color: var(--red-orange);
+    z-index: 1; /* Keep it behind other elements */
+}
+
 .goon-background {
     position: relative;
     height: 100%;
-    /* overflow: hidden; */
+    margin-left: 50px; /* Offset to make space for the red box */
+    z-index: 2; /* Ensure it layers above the red box */
 }
 
 /* .text-background {
@@ -32,7 +43,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     height: 100vh;
     overflow: hidden;
 }
@@ -40,7 +50,6 @@ html, body {
 .goons-container {
     display: flex;
     flex-wrap: wrap;
-    /* gap: 20px; */
     justify-content: space-between;  /* Ensure the goon-cards are spaced properly */
     align-items: flex-start;
     width: 95%;                      /* Set the width for goon-cards */
@@ -49,7 +58,6 @@ html, body {
     overflow: auto;                  /* Allow scrolling if there are many cards */
     position: relative;
     overflow: hidden;
-
 }
 
 .suggestion-box {
@@ -60,7 +68,7 @@ html, body {
     transform-origin: top left; /* Set the origin for the transform to the top-left corner */
 }
 
-.suggestion-box:hover{
+.suggestion-box:hover {
     transform: scale(10);
 }
 
@@ -72,7 +80,7 @@ html, body {
     width: 20px;
 }
 
-.goon-card:hover{
+.goon-card:hover {
     transform: scale(10);
 }
 
@@ -80,7 +88,6 @@ html, body {
     width: 100%;
     height: auto;
 }
-
 
 .god-of-goon {
     z-index: 10;
