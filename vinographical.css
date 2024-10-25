@@ -48,9 +48,9 @@ main{
     flex-direction: column;
     justify-content: space-between;
     height: 3vh;
-    margin: 1vh 3vh;
+    margin: 1.5vh 3vh;
     font-family: var(--main-font);
-    padding:1px
+    padding:1px;
 }
 
 .bar-name{
@@ -58,7 +58,6 @@ main{
     flex-direction: row;
     justify-content: space-between;
 }
-
 
 
 .distance{
@@ -106,3 +105,4 @@ p {
     text-align: left;
     /* text-transform: uppercase; */
 }
+

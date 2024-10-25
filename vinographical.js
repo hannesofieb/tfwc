@@ -1,6 +1,12 @@
-let subrubZoom = []; // list of suburb-zoom imgs, so when you hover over a particular suburb, then it will check the (nested?) array for the suburb and then insert the respecting image into the .map
+let suburbImages = {
+    "brunswick": "assets/vino/brunswick.png",
+    "carlton": "assets/vino/carlton.png",
+    "cbd": "assets/vino/cbd.png",
+    "collingwood": "assets/vino/collingwood.png",
+    "fitzroy": "assets/vino/fitzroy.png",
+    "south-yarra": "assets/vino/south-yarra.png"
+};
 
-// Get user location and calculate distance
 let userLatitude = null;
 let userLongitude = null;
 
@@ -44,7 +50,6 @@ function loadBarsData() {
     fetch('vinographical-bars.csv')
         .then(response => response.text())
         .then(data => {
-            // Parse CSV data
             const lines = data.split('\n');
             const headers = lines[0].split(',');
             const suburbIndex = headers.indexOf('suburb');
@@ -52,31 +57,28 @@ function loadBarsData() {
             const commentsIndex = headers.indexOf('comments');
             const linkIndex = headers.indexOf('link');
             const gifIndex = headers.indexOf('gif');
-            const musicIndex = headers.indexOf('music');
+            const imgIndex = headers.indexOf('img');
             const latitudeIndex = headers.indexOf('latitude');
             const longitudeIndex = headers.indexOf('longitude');
 
-            // Loop through each line in the CSV
             for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim() === '') continue; // Skip empty lines
+                if (lines[i].trim() === '') continue;
                 const line = lines[i].split(',');
                 const suburb = line[suburbIndex]?.trim();
                 const barName = line[barNameIndex]?.trim();
                 const comments = line[commentsIndex] ? line[commentsIndex].trim().split(' ') : [];
                 const link = line[linkIndex] ? line[linkIndex].trim() : null;
                 const gif = line[gifIndex] ? line[gifIndex].trim() : null;
-                const music = line[musicIndex] ? line[musicIndex].trim() : null;
+                const img = line[imgIndex] ? line[imgIndex].trim() : null;
                 const barLatitude = parseFloat(line[latitudeIndex]);
                 const barLongitude = parseFloat(line[longitudeIndex]);
 
-                // Calculate distance if user location is available
                 let distanceText = "Location not available";
                 if (userLatitude !== null && userLongitude !== null && !isNaN(barLatitude) && !isNaN(barLongitude)) {
                     const distance = calculateDistance(userLatitude, userLongitude, barLatitude, barLongitude);
                     distanceText = `${(distance / 1000).toFixed(2)}km`;
                 }
 
-                // Find matching suburb section
                 if (suburb && barName) {
                     const suburbSection = document.querySelector(`.${suburb.toLowerCase()} .bar-list`);
                     if (suburbSection) {
@@ -94,7 +96,6 @@ function loadBarsData() {
                         distanceDiv.classList.add('distance');
                         distanceDiv.textContent = distanceText;
 
-                        // Set up click to open link in new tab
                         if (link) {
                             barNameDiv.addEventListener('click', function() {
                                 window.open(link, '_blank');
@@ -106,7 +107,7 @@ function loadBarsData() {
 
                         const commentsDiv = document.createElement('div');
                         commentsDiv.classList.add('comments');
-                        commentsDiv.style.display = 'none'; // Hide comments by default
+                        commentsDiv.style.display = 'none';
                         commentsDiv.style.flexDirection = 'row';
                         comments.forEach(comment => {
                             const commentDiv = document.createElement('div');
@@ -115,10 +116,21 @@ function loadBarsData() {
                             commentsDiv.appendChild(commentDiv);
                         });
 
-                        // Show comments on hover of bar name
                         barNameDiv.addEventListener('mouseenter', function() {
                             commentsDiv.style.display = 'flex';
+                            if (gif) {
+                                const mapImage = document.getElementById('mapImage');
+                                mapImage.src = gif;
+
+                                // Set timeout to change image back after GIF finishes
+                                setTimeout(() => {
+                                    if (img) {
+                                        mapImage.src = img;
+                                    }
+                                }, 2800); // Assuming GIF duration is 3 seconds, you can adjust as needed
+                            }
                         });
+
                         barNameDiv.addEventListener('mouseleave', function() {
                             commentsDiv.style.display = 'none';
                         });
@@ -132,3 +144,19 @@ function loadBarsData() {
         })
         .catch(error => console.error('Error loading CSV file:', error));
 }
+
+// Event listener for suburb hover
+document.querySelectorAll('.suburb').forEach(suburbElement => {
+    suburbElement.addEventListener('mouseenter', function() {
+        const suburbName = this.classList[0]; // Assuming the suburb class is the name
+        const mapImage = document.getElementById('mapImage');
+        if (suburbImages[suburbName]) {
+            mapImage.src = suburbImages[suburbName];
+        }
+    });
+
+    suburbElement.addEventListener('mouseleave', function() {
+        const mapImage = document.getElementById('mapImage');
+        mapImage.src = 'assets/vino/main-map.png';
+    });
+});
