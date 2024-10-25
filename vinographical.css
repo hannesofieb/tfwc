@@ -17,12 +17,11 @@ h1, h2{
     text-align: center;
 }
 
-hr{
-    height: 2px;
-    border-width: 0;
-    background-color: var(--ruby);
-    color: var(--ruby);
+em{
+    font-size: 2em;
 }
+
+
 
 main{
     display: flex;
@@ -31,12 +30,17 @@ main{
 }
 
 .wine-cart{
+    overflow-y:visible;
     display: flex;
     flex-direction: column;
     width: 35vw;
     min-width: auto;
     background-color: var(--burgundy);
     color: var(--ruby);
+}
+
+.suburb:hover{
+    color: var(--white-warm);
 }
 
 .bar-line{
@@ -55,6 +59,8 @@ main{
     justify-content: space-between;
 }
 
+
+
 .distance{
     font-size: 0.7em;
 }
@@ -66,7 +72,7 @@ main{
 }
 
 .comment{
-    background-color: var(--white-warm);
+    color: var(--white-warm);
     margin-right: 5px;
     /* padding:1px */
 }
@@ -91,7 +97,8 @@ a {
 }
 
 a:hover{
-    -webkit-text-stroke-width: 1.5px;
+    color: var(--white-warm);
+    -webkit-text-stroke-color: var(--white-warm);
 }
 
 p {

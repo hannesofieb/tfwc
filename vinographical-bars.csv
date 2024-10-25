@@ -1,14 +1,14 @@
-suburb,bar-name,comments,link,gif,music,latitude,longitude
-brunswick,the brunswick green,neighbourhood live-music homey,,,,-37.76871028442955, 144.9612696889881
-brunswick,bahama gold,looks really cool,,,,-37.771424165268094, 144.97139770949101
-brunswick,waxflower,havent been yet,,,,-37.7738665728612, 144.9703677413043
-carlton,bar holiday,friends sunny-day datenight,,,,-37.80221973130778, 144.96332962536155
-carlton,good measure,friends live-music plants-and-vinyls,,,,-37.79828621103193, 144.967621159473
-carlton,sunhands, minimalistic cool date,,,,-37.794623779718805, 144.969509434482
-cbd,cathedral coffee,european-vibe after-work intimate,,,,-37.81456148664762, 144.96659119128623
-cbd,rooftop bar,after-work music chill,,,,-37.81184435037612, 144.96526109636784
-cbd,caretakers cottage,late-night house-party chill,,,,-37.80845867863187, 144.96779282083745
-cbd,kirk's wine bar,laneway european-vibe sunny-day,,,,-37.81184918980465, 144.9607547048947
-collingwood,hope st radio,cool-people minimalist live-music,,,,-37.796522840842535, 144.98581726410538
-fitzroy,black cat,first-date-hotspot cafe friends,,,,-37.79855749501732, 144.97809250270484
-south-yarra,republic economica,cheap music friends/date,,,,-37.839032769332405, 144.991508882875
+suburb,bar-name,comments,gif,img,music,link,latitude,longitude
+brunswick,the brunswick green,neighbourhood live-music homey,,,,https://www.thebrunswickgreen.com/gigs-at-the-green?view=calendar&month=10-2024,,,-37.76871028442955, 144.9612696889881
+brunswick,bahama gold,cool lofi wine-friends,,,,https://www.instagram.com/bahama.gold/,-37.771424165268094, 144.97139770949101
+brunswick,waxflower,chill scandi-retro live-music,,,,https://www.instagram.com/waxflowerbar/,-37.7738665728612, 144.9703677413043
+carlton,bar holiday,friends sunny-day datenight,,,,https://www.instagram.com/barholiday_carlton/,-37.80221973130778, 144.96332962536155
+carlton,good measure,friends live-music plants-and-vinyls,,,,https://www.instagram.com/goodmeasuremelbourne/,-37.79828621103193, 144.967621159473
+carlton,sunhands, minimalistic cool date,,,,https://www.instagram.com/sunhands.sunhands/,-37.794623779718805, 144.969509434482
+cbd,cathedral coffee,european-vibe after-work intimate,,,,https://www.instagram.com/ccmelbourne/,-37.81456148664762, 144.96659119128623
+cbd,rooftop bar,after-work music chill,,,,https://www.instagram.com/rooftopbar/,-37.81184435037612, 144.96526109636784
+cbd,caretakers cottage,late-night house-party chill,,,,https://www.instagram.com/caretakers.cottage/,-37.80845867863187, 144.96779282083745
+cbd,kirk's wine bar,laneway european-vibe sunny-day,,,,https://www.instagram.com/kirkswinebar/,-37.81184918980465, 144.9607547048947
+collingwood,hope st radio,cool-people minimalist live-music,,,,https://www.instagram.com/hopestradio/,-37.796522840842535, 144.98581726410538
+fitzroy,black cat,first-date-hotspot cafe sunny-day,,,,https://www.instagram.com/blackcatfitzroy/,-37.79855749501732, 144.97809250270484
+south-yarra,republic economica,cheap music friends/date,,,,https://www.instagram.com/republic.economica/,-37.839032769332405, 144.991508882875
