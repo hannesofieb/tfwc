@@ -34,6 +34,7 @@ main{
     display: flex;
     flex-direction: column;
     width: 35vw;
+    min-width: auto;
     background-color: var(--burgundy);
     color: var(--ruby);
 }
