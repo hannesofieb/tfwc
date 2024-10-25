@@ -1,0 +1,100 @@
+html, body {
+    margin: 0;
+    background-color: var(--white-warm);
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2{
+    font-family: var(--logo-font);
+    font-weight: 300;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+hr{
+    height: 2px;
+    border-width: 0;
+    background-color: var(--ruby);
+    color: var(--ruby);
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.wine-cart{
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    background-color: var(--burgundy);
+    color: var(--ruby);
+}
+
+.bar-line{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 3vh;
+    margin: 1vh 3vh;
+    font-family: var(--main-font);
+    padding:1px
+}
+
+.bar-name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.distance{
+    font-size: 0.7em;
+}
+
+.comments{
+    display: flex;
+    flex-direction: row;
+    font-size: 0.7em;    
+}
+
+.comment{
+    background-color: var(--white-warm);
+    margin-right: 5px;
+    /* padding:1px */
+}
+
+footer {
+    height: 9vh;
+    width: 100%;
+    overflow: hidden;
+    display: inline-block;
+    background-color: var(--burgundy);
+    color: var(--ruby);
+}
+
+a {
+    text-decoration: none;
+    font-family: var(--logo-font);
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--ruby);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--ruby);
+}
+
+a:hover{
+    -webkit-text-stroke-width: 1.5px;
+}
+
+p {
+    margin: 1vh 3vh;
+    text-align: left;
+    /* text-transform: uppercase; */
+}
