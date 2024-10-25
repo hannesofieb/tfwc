@@ -78,12 +78,13 @@ function displayWines(wines) {
     });
 }
 
-// Function to load CSV and display wines
 function loadCSVAndDisplayWines() {
     Papa.parse("wines.csv", {
         download: true,
         header: true,
         complete: function(results) {
+            console.log('CSV Loaded:', results.data);
+
             winesData = results.data.map(wine => {
                 const price = parseFloat(wine.price);
                 return {
@@ -94,30 +95,31 @@ function loadCSVAndDisplayWines() {
 
             shuffleArray(winesData);
             displayWines(winesData);
+
+            // Event listeners for sorting/filtering (added after CSV is loaded)
+            document.getElementById('sort-cheap').addEventListener('click', () => {
+                const sortedWines = sortByPrice([...winesData], true);
+                displayWines(sortedWines);
+            });
+
+            document.getElementById('sort-expensive').addEventListener('click', () => {
+                const sortedWines = sortByPrice([...winesData], false);
+                displayWines(sortedWines);
+            });
+
+            document.getElementById('filter-classic').addEventListener('click', () => {
+                const classicWines = filterByType(winesData, 'normal');
+                displayWines(classicWines);
+            });
+
+            document.getElementById('filter-funky').addEventListener('click', () => {
+                const funkyWines = filterByType(winesData, 'funky');
+                displayWines(funkyWines);
+            });
         }
     });
-
-    // Event listeners for sorting/filtering
-    document.getElementById('sort-cheap').addEventListener('click', () => {
-        const sortedWines = sortByPrice([...winesData], true);
-        displayWines(sortedWines);
-    });
-
-    document.getElementById('sort-expensive').addEventListener('click', () => {
-        const sortedWines = sortByPrice([...winesData], false);
-        displayWines(sortedWines);
-    });
-
-    document.getElementById('filter-classic').addEventListener('click', () => {
-        const classicWines = filterByType(winesData, 'normal');
-        displayWines(classicWines);
-    });
-
-    document.getElementById('filter-funky').addEventListener('click', () => {
-        const funkyWines = filterByType(winesData, 'funky');
-        displayWines(funkyWines);
-    });
 }
+
 
 // Load and display the wines when the document is ready
 document.addEventListener("DOMContentLoaded", function() {
