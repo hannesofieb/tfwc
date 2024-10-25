@@ -24,7 +24,7 @@ function displayWines(wines) {
     winesSection.innerHTML = ''; // Clear the section
 
     wines.forEach(wine => {
-        if (wine.front && wine.front.trim() !== '' && wine.price !== null) {
+        if (wine.front && wine.front.trim() !== '' && wine.price !== null && wine.comment) {
             const wineHTML = `
                 <div class="wine-card">
                     <img src="${wine.front}" alt="${wine.name}" class="wine-img" data-link="${wine.link}" draggable="true" data-name="${wine.name}" data-type="${wine.funkyNormal}" data-price="${wine.price}" data-front="${wine.front}" data-comment="${wine.comment}">
@@ -56,11 +56,17 @@ function displayWines(wines) {
             const winePrice = this.dataset.price;
 
             // Display the wine image in the center
-            bottleImgContainer.innerHTML = `<img src="${wineFront}" alt="${this.dataset.name}" class="wine-img-hover">`;
+            if (wineFront) {
+                bottleImgContainer.innerHTML = `<img src="${wineFront}" alt="${this.dataset.name}" class="wine-img-hover">`;
+            }
 
             // Update comment and price
-            commentElement.textContent = wineComment;
-            priceElement.textContent = `$${parseFloat(winePrice).toFixed(2)}`;
+            if (wineComment) {
+                commentElement.textContent = wineComment;
+            }
+            if (winePrice) {
+                priceElement.textContent = `$${parseFloat(winePrice).toFixed(2)}`;
+            }
         });
 
         // Clear hover info when mouse leaves the image
@@ -77,6 +83,7 @@ function displayWines(wines) {
         });
     });
 }
+
 
 function loadCSVAndDisplayWines() {
     Papa.parse("wines.csv", {
@@ -124,5 +131,4 @@ function loadCSVAndDisplayWines() {
 // Load and display the wines when the document is ready
 document.addEventListener("DOMContentLoaded", function() {
     loadCSVAndDisplayWines();
-    setupDropArea();
 });
