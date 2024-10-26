@@ -281,23 +281,10 @@ hr{
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
     margin: 1%;
-
-    /* Initial upward movement animation */
-    animation: move-upwards 30s linear infinite; /* 30s is the duration, adjust as needed */
 }
 
 /* Scale effect and pause animation on hover */
 .flavour-container img.flavour-image:hover {
     transform: scale(1.1);
-    animation-play-state: paused; /* Pause animation on hover */
 }
 
-/* Define the keyframes for upward movement */
-@keyframes move-upwards {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100vh); /* Move the image upward completely out of view */
-    }
-}
