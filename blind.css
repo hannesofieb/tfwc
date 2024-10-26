@@ -205,6 +205,10 @@ hr{
 
 
 /* -------------------------------apparance styling */
+#apparence {
+    cursor: url('/tfwc/assets/cursors/wine-tasting-apparence.cur'), auto;
+}
+
 .paint-wall{
     width: 90%;
     height: 100%;
