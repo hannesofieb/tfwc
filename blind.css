@@ -19,13 +19,13 @@ html, body {
     width: 15vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .index {
     list-style: none; /* Remove bullets from the list */
     padding: 10px; /* Add some padding around the list for spacing */
-    width:100%
+    width:100%;
+    margin-bottom: 5vh;
     /* background-color: var(--white-warm); */
 }
 
@@ -41,52 +41,36 @@ html, body {
     text-decoration: none; /* Default to no underline */
 }
 
-/* Previous button styling */
-#prev img {
-    position: absolute; /* Set position to absolute relative to its parent container */
-    bottom: 12%; /* Position above the next button */
-    right: 1%;
-    width: 15%;
-    cursor: pointer;
-    transform: rotate(180deg); /* Rotate the image 180 degrees */
+
+hr{
+    border-top: 1px solid var(--burgundy);
+    width: 100%;
+
 }
 
-#prev img:hover {
-    animation: bounce-rotated 1s ease-in-out;
+.tasting-notes{
+    height: 59%;
+    width: 100%;
+    margin: 0 20px;
+    padding: 0 10px; /* Add some padding around the list for spacing */
+    color: var(--burgundy);
+
 }
 
-/* Next button styling */
-#next img {
-    position: absolute; /* Set position to absolute relative to its parent container */
-    bottom: 1%; /* Position near the bottom of the container */
-    right: 1%;
-    width: 15%;
-    cursor: pointer;
+.tasting-notes h1{
+    font-family: var(--main-font);
+    font-size: 12px;
+    text-decoration: underline;
+    font-weight: 500;
 }
 
-#next img:hover {
-    animation: bounce 1s ease-in-out;
+.tasting-notes p{
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: var(--main-font);
+    font-size: 12px;
+    font-weight: 300;
 }
 
-/* Keyframes for bounce effect */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateX(0) translateY(0); /* No horizontal or vertical movement */
-    }
-    50% {
-        transform: translateX(0) translateY(-10px); /* Bounce upwards, no horizontal movement */
-    }
-}
-
-/* Keyframes for bounce effect with rotation */
-@keyframes bounce-rotated {
-    0%, 100% {
-        transform: rotate(180deg) translateX(0) translateY(0); /* Keep the rotation */
-    }
-    50% {
-        transform: rotate(180deg) translateX(0) translateY(10px); /* Keep the rotation and add bounce */
-    }
-}
 
 /* Main section styling */
 .main {
@@ -158,6 +142,54 @@ html, body {
     to {
         opacity: 0;
         transform: translateY(50vh); /* Move down and out */
+    }
+}
+
+
+/* Previous button styling */
+#prev img {
+    position: absolute; /* Set position to absolute relative to its parent container */
+    bottom: 12%; /* Position above the next button */
+    right: 1%;
+    width: 15%;
+    cursor: pointer;
+    transform: rotate(180deg); /* Rotate the image 180 degrees */
+}
+
+#prev img:hover {
+    animation: bounce-rotated 1s ease-in-out;
+}
+
+/* Next button styling */
+#next img {
+    position: absolute; /* Set position to absolute relative to its parent container */
+    bottom: 1%; /* Position near the bottom of the container */
+    right: 1%;
+    width: 15%;
+    cursor: pointer;
+}
+
+#next img:hover {
+    animation: bounce 1s ease-in-out;
+}
+
+/* Keyframes for bounce effect */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(0) translateY(0); /* No horizontal or vertical movement */
+    }
+    50% {
+        transform: translateX(0) translateY(-10px); /* Bounce upwards, no horizontal movement */
+    }
+}
+
+/* Keyframes for bounce effect with rotation */
+@keyframes bounce-rotated {
+    0%, 100% {
+        transform: rotate(180deg) translateX(0) translateY(0); /* Keep the rotation */
+    }
+    50% {
+        transform: rotate(180deg) translateX(0) translateY(10px); /* Keep the rotation and add bounce */
     }
 }
 

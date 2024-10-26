@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to load a section into .main with animation
     function loadSection(newSectionIndex) {
+        if (newSectionIndex < 0 || newSectionIndex >= sections.length) {
+            return; // Prevent index out of bounds
+        }
+
         const sectionId = sections[newSectionIndex];
         const sectionContent = document.getElementById(sectionId).innerHTML;
 
@@ -71,6 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     listItem.style.fontWeight = "300"; // Set lighter font weight for inactive sections
                 }
             });
+
+            // Re-attach event listeners to the new content
+            addPaintSwatchListeners();
         }, 500); // Set to the duration of your fade-out animation
     }
 
@@ -82,15 +89,38 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Event listener for the .next button
-    document.querySelector(".next").addEventListener("click", (event) => {
+    // Event listener for the #next button
+    document.querySelector("#next").addEventListener("click", (event) => {
         event.preventDefault();
         const nextSectionIndex = (currentSectionIndex + 1) % sections.length; // Cycle to the next section
         loadSection(nextSectionIndex);
     });
 
+    // Event listener for the #prev button
+    document.querySelector("#prev").addEventListener("click", (event) => {
+        event.preventDefault();
+        const prevSectionIndex = (currentSectionIndex - 1 + sections.length) % sections.length; // Cycle to the previous section
+        loadSection(prevSectionIndex);
+    });
+
     // Initial load
     loadSection(currentSectionIndex);
+
+    // Function to add event listeners to the paint swatches
+    function addPaintSwatchListeners() {
+        const paintSwatches = document.querySelectorAll(".paint-swatch");
+
+        paintSwatches.forEach(swatch => {
+            swatch.addEventListener("click", () => {
+                const label = swatch.querySelector(".label").textContent;
+                const looksDiv = document.querySelector(".looks p");
+                looksDiv.textContent = `apparence: ${label}`;
+            });
+        });
+    }
+
+    // Attach event listeners to the paint swatches initially
+    addPaintSwatchListeners();
 });
 
 //--------------paint-wall
@@ -107,4 +137,3 @@ document.addEventListener("DOMContentLoaded", () => {
         element.style.backgroundColor = colorCode;
     });
 });
-
