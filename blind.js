@@ -77,12 +77,19 @@ document.addEventListener("DOMContentLoaded", () => {
                         imgElement.src = item.img;
                         imgElement.title = `${item.flavour} ${item.sub}`;
 
-                        // Set the positioning to random but within limits
+                        // Set initial position
                         imgElement.style.position = "absolute";
-                        imgElement.style.top = `${Math.random() * 80}%`; // Randomized but controlled
+                        imgElement.style.top = `${Math.random() * 80}%`;
                         imgElement.style.left = `${Math.random() * 80}%`;
 
-                        console.log(imgElement);
+                        // Assign a random movement pattern with varied duration
+                        const movementPatterns = [
+                            { name: 'float-clockwise', duration: '15s' },
+                            { name: 'float-anticlockwise', duration: '18s' },
+                            { name: 'float-zigzag', duration: '20s' }
+                        ];
+                        const randomPattern = movementPatterns[Math.floor(Math.random() * movementPatterns.length)];
+                        imgElement.style.animation = `${randomPattern.name} ${randomPattern.duration} ease-in-out infinite`;
 
                         // Add click functionality to update .smells container
                         imgElement.addEventListener("click", () => {
@@ -111,6 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+
 
     // Load the first section initially without any animations
     loadSection(currentSectionIndex);

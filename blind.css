@@ -273,18 +273,94 @@ hr{
     max-height: 100%; /* Prevent overflow vertically */
 }
 
-/* Adjust styles for flavour images to ensure they are manageable in size and stay inside .main */
+/* General flavour image styles */
 .flavour-container img.flavour-image {
-    position: absolute;
-    max-width: 10%; /* Make sure images are not too large */
+    max-width: 10%;
     height: auto;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
     margin: 1%;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
 }
 
 /* Scale effect and pause animation on hover */
 .flavour-container img.flavour-image:hover {
     transform: scale(1.1);
+    animation-play-state: paused; /* Pause animation on hover */
 }
+
+/* Keyframes for movement pattern 1 (clockwise) */
+@keyframes float-clockwise {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(15px, -10px);
+    }
+    50% {
+        transform: translate(10px, 15px);
+    }
+    75% {
+        transform: translate(-15px, 10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Keyframes for movement pattern 2 (anticlockwise) */
+@keyframes float-anticlockwise {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(-10px, 15px);
+    }
+    50% {
+        transform: translate(-15px, -10px);
+    }
+    75% {
+        transform: translate(10px, -15px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Keyframes for movement pattern 3 (random zig-zag) */
+@keyframes float-zigzag {
+    0% {
+        transform: translate(0, 0);
+    }
+    20% {
+        transform: translate(20px, -15px);
+    }
+    40% {
+        transform: translate(-15px, 20px);
+    }
+    60% {
+        transform: translate(-20px, -15px);
+    }
+    80% {
+        transform: translate(15px, 10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Assign a longer animation duration */
+.flavour-container img.float-clockwise {
+    animation: float-clockwise 15s ease-in-out infinite; /* Increased from 5s to 15s for slower animation */
+}
+
+.flavour-container img.float-anticlockwise {
+    animation: float-anticlockwise 15s ease-in-out infinite; /* Increased from 5s to 15s */
+}
+
+.flavour-container img.float-zigzag {
+    animation: float-zigzag 20s ease-in-out infinite; /* Increased from 5s to 20s to add more variability */
+}
+
 
