@@ -1,0 +1,51 @@
+flavour,sub,img
+fruity,melon,/assets/tasting/flavours/melon.png
+fruity,berry fruit,/assets/tasting/flavours/berries-raspberry.png
+fruity,citrus,/assets/tasting/flavours/citrus-orange-1.png
+fruity,citrus,/assets/tasting/flavours/citrus-grapefruit.png
+fruity,pear,/assets/tasting/flavours/pear.png
+fruity,green apple,/assets/tasting/flavours/apple-green.png
+fruity,apple,/assets/tasting/flavours/apple-red.png
+fruity,stone fruit,/assets/tasting/flavours/stonefruit-cherry.png
+fruity,stone fruit,/assets/tasting/flavours/stonefruit-apricot.png
+fruity,stone fruit,/assets/tasting/flavours/stonefruit-nectarine.png
+fruity,tropical,/assets/tasting/flavours/pineapple.png
+floral,floral,/assets/tasting/flavours/floral.png
+floral,blossom,/assets/tasting/flavours/floral-1.png
+floral,rose,/assets/tasting/flavours/rose.png
+floral,rose,/assets/tasting/flavours/rose-1.png
+floral,elderflower,/assets/tasting/flavours/elderflower.png
+floral,violet,/assets/tasting/flavours/perfume-floral.png
+floral,perfumed,/assets/tasting/flavours/perfume-floral.png
+floral,white flower/blossom,/assets/tasting/flavours/white-blossoms.png
+herbaceous,cut grass,/assets/tasting/flavours/grass.png
+herbaceous,asparagus,/assets/tasting/flavours/asparagus.png
+herbaceous,bay leaf,/assets/tasting/flavours/bay-leaf.png
+herbaceous,tobacco leaf,/assets/tasting/flavours/bay-leaf.png
+vegetative,capsicum,/assets/tasting/flavours/capsicum.png
+vegetative,asparagus,/assets/tasting/flavours/asparagus.png
+vegetative,eucalypt,/assets/tasting/flavours/eucalypt.png
+vegetative,green beans,/assets/tasting/flavours/green-bean.png
+woody,oak,/assets/tasting/flavours/wood.png
+woody,toast,/assets/tasting/flavours/toast.png
+woody,pencil shavings,/assets/tasting/flavours/pencil-shavings.png
+woody,vanilla,/assets/tasting/flavours/vanilla.png
+woody,nutty,/assets/tasting/flavours/nutmeg.png
+spicy,pepper,/assets/tasting/flavours/pepper.png
+spicy,clove,/assets/tasting/flavours/cloves.png
+spicy,nutmeg,/assets/tasting/flavours/nutmeg.png
+spicy,cinnamon,/assets/tasting/flavours/cinnamon.png
+spicy,liquorice,/assets/tasting/flavours/liquorice.png
+earthy,earthy,/assets/tasting/flavours/smokey.png
+earthy,mulch,/assets/tasting/flavours/mulch.png
+earthy,flinty,/assets/tasting/flavours/flint.png
+earthy,mushroom,/assets/tasting/flavours/mushroom.png
+earthy,minerally,/assets/tasting/flavours/flint.png
+earthy,wet stone,/assets/tasting/flavours/wet-stone.png
+savoury,bacon,/assets/tasting/flavours/bacon.png
+savoury,oyster,/assets/tasting/flavours/oysters.png
+savoury,vegemite,/assets/tasting/flavours/vegemite.png
+savoury,leather,/assets/tasting/flavours/leather.png
+savoury,tomato,/assets/tasting/flavours/tomato.png
+kerosine,petrol,/assets/tasting/flavours/petrol.png
+kerosine,cat piss,/assets/tasting/flavours/cat-piss.png

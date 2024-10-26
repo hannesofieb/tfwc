@@ -16,7 +16,7 @@ html, body {
 }
 
 .info{
-    width: 15vw;
+    width: 20vw;
     display: flex;
     flex-direction: column;
 }
@@ -271,4 +271,33 @@ hr{
     width: auto;  /* Maintain aspect ratio */
     max-width: 100%; /* Make sure it doesn’t overflow horizontally */
     max-height: 100%; /* Prevent overflow vertically */
+}
+
+/* Adjust styles for flavour images to ensure they are manageable in size and stay inside .main */
+.flavour-container img.flavour-image {
+    position: absolute;
+    max-width: 10%; /* Make sure images are not too large */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 1%;
+
+    /* Initial upward movement animation */
+    animation: move-upwards 30s linear infinite; /* 30s is the duration, adjust as needed */
+}
+
+/* Scale effect and pause animation on hover */
+.flavour-container img.flavour-image:hover {
+    transform: scale(1.1);
+    animation-play-state: paused; /* Pause animation on hover */
+}
+
+/* Define the keyframes for upward movement */
+@keyframes move-upwards {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100vh); /* Move the image upward completely out of view */
+    }
 }
