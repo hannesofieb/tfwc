@@ -4,55 +4,161 @@ html, body {
     overflow: hidden;
 }
 
-.index{
-    display: inline-block;
+#apparence, #nose, #taste {
+    display: none;
 }
-.index-line{
+
+.window{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+}
+
+.info{
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.index {
+    list-style: none; /* Remove bullets from the list */
+    padding: 10px; /* Add some padding around the list for spacing */
+    width:100%
+    /* background-color: var(--white-warm); */
+}
+
+.index-line {
     display: flex;
     flex-direction: row;
     font-family: var(--main-font);
     font-size: 12px;
-    list-style: none;
 }
 
-.index-line a{
+.index-line a {
     color: var(--burgundy);
+    text-decoration: none; /* Default to no underline */
 }
 
-/* Main section styling */
-.main {
-    position: relative; /* Set position to make it a reference point for child elements */
-    height: 100vh; /* Full viewport height */
+/* Previous button styling */
+#prev img {
+    position: absolute; /* Set position to absolute relative to its parent container */
+    bottom: 12%; /* Position above the next button */
+    right: 1%;
+    width: 15%;
+    cursor: pointer;
+    transform: rotate(180deg); /* Rotate the image 180 degrees */
+}
+
+#prev img:hover {
+    animation: bounce-rotated 1s ease-in-out;
 }
 
 /* Next button styling */
-.next {
-    position: fixed; /* Fixed position relative to viewport */
-    bottom: 2%; /* Place near the bottom of the viewport */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust to fully center the element */
-    z-index: 10; /* Ensure it's above other elements */
-    text-align: center; /* Center the button content */
+#next img {
+    position: absolute; /* Set position to absolute relative to its parent container */
+    bottom: 1%; /* Position near the bottom of the container */
+    right: 1%;
+    width: 15%;
+    cursor: pointer;
 }
 
-
-.next:hover {
-    cursor: pointer;
+#next img:hover {
     animation: bounce 1s ease-in-out;
 }
 
 /* Keyframes for bounce effect */
 @keyframes bounce {
     0%, 100% {
-        transform: translate(-50%, 0);
+        transform: translateX(0) translateY(0); /* No horizontal or vertical movement */
     }
     50% {
-        transform: translate(-50%, -10px); /* Adjust how high the bounce goes */
+        transform: translateX(0) translateY(-10px); /* Bounce upwards, no horizontal movement */
     }
 }
 
-#apparence, #nose, #taste {
-    display: none;
+/* Keyframes for bounce effect with rotation */
+@keyframes bounce-rotated {
+    0%, 100% {
+        transform: rotate(180deg) translateX(0) translateY(0); /* Keep the rotation */
+    }
+    50% {
+        transform: rotate(180deg) translateX(0) translateY(10px); /* Keep the rotation and add bounce */
+    }
+}
+
+/* Main section styling */
+.main {
+    position: relative;
+    height: calc(100vh - 80px); /* Adjust height to account for the padding from the index */
+    width: 100vw;
+    padding-top: 60px; /* Create space so the main section content doesn't overlap the index */
+    padding-left: 10%; /* Adjust this to make room for the .index if it overlaps horizontally */
+    overflow: hidden; /* Allow content to scroll if it’s larger than the section */
+}
+
+
+/* Fade-in and Fade-out Animations for Different Directions */
+.fade-in-up {
+    animation: fade-in-up 0.5s ease forwards; /* New content fades in from bottom */
+}
+
+.fade-in-down {
+    animation: fade-in-down 0.5s ease forwards; /* New content fades in from top */
+}
+
+.fade-out-up {
+    animation: fade-out-up 0.5s ease forwards; /* Current content fades out moving up */
+}
+
+.fade-out-down {
+    animation: fade-out-down 0.5s ease forwards; /* Current content fades out moving down */
+}
+
+/* Keyframes for Fade-in and Fade-out animations */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(50vh); /* New content moves up from below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End at original position */
+    }
+}
+
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-50vh); /* New content moves down from above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End at original position */
+    }
+}
+
+@keyframes fade-out-up {
+    from {
+        opacity: 1;
+        transform: translateY(0); /* Start at original position */
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-50vh); /* Move up and out */
+    }
+}
+
+@keyframes fade-out-down {
+    from {
+        opacity: 1;
+        transform: translateY(0); /* Start at original position */
+    }
+    to {
+        opacity: 0;
+        transform: translateY(50vh); /* Move down and out */
+    }
 }
 
 
@@ -62,8 +168,8 @@ html, body {
 }
 
 .paint-wall{
-    width: 100vw;
-    height: 100vh;
+    width: 90%;
+    height: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -75,8 +181,8 @@ html, body {
 .paint-swatch{
     display: flex;
     flex-direction: column;
-    width: 10%;
-    height: 10%;
+    width: 10vw;
+    height: 14vh;
 }
 
 .colour {
@@ -96,3 +202,29 @@ html, body {
     background-color: attr(id color, #000); /* Fallback to black if no id */
 }
 
+/* -----------------------------------------nose */
+#nose{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-warm);
+}
+
+.image-container {
+    left: 50%; /* Center horizontally */
+    z-index: 10; /* Ensure it's above other elements */
+    /* justify-content: center;
+    align-items: center; */
+    height: 100%; /* Full viewport height */
+    width: 100%;  /* Full viewport width */
+}
+
+.center-image {
+    height: 70vh; /* Set the height of the image */
+    width: auto;  /* Maintain aspect ratio */
+    max-width: 100%; /* Make sure it doesn’t overflow horizontally */
+    max-height: 100%; /* Prevent overflow vertically */
+}

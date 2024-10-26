@@ -5,54 +5,93 @@ document.addEventListener("DOMContentLoaded", () => {
     const main = document.querySelector(".main");
     const links = document.querySelectorAll(".index-line a");
 
-    // Function to load a section into .main
-    function loadSection(sectionId) {
-        const sectionContent = document.getElementById(sectionId).innerHTML;
-        main.innerHTML = sectionContent;
+    // Set default visibility for icons to hidden except for sections[0] and adjust font weight
+    links.forEach((link, index) => {
+        const icon = link.previousElementSibling;
+        const listItem = link.parentElement;
 
-        // Update active icon visibility and link styles
-        links.forEach((link, index) => {
-            const icon = link.previousElementSibling;
-            if (sections[index] === sectionId) {
-                icon.style.visibility = 'visible'; // Show active icon for the current section
-                link.style.textDecoration = "none";
-                link.style.opacity = "1"; // Normal style for current section
-            } else {
-                icon.style.visibility = 'hidden'; // Hide other icons
-                if (index < currentSectionIndex) {
-                    // Style for previous sections (strikethrough and lower opacity)
-                    link.style.textDecoration = "line-through";
-                    link.style.opacity = "0.5";
-                } else {
-                    // Reset style for upcoming sections
+        if (index === 0) {
+            icon.style.visibility = 'visible'; // Show the icon for the first section by default
+            listItem.style.fontWeight = "500"; // Set the font weight for the first section to 500
+        } else {
+            icon.style.visibility = 'hidden'; // Hide all other icons
+            listItem.style.fontWeight = "300"; // Set the font weight for other sections to 300
+        }
+    });
+
+    // Function to load a section into .main with animation
+    function loadSection(newSectionIndex) {
+        const sectionId = sections[newSectionIndex];
+        const sectionContent = document.getElementById(sectionId).innerHTML;
+
+        // Determine if we are moving up or down
+        let direction;
+        if (newSectionIndex > currentSectionIndex) {
+            direction = "down";
+        } else if (newSectionIndex < currentSectionIndex) {
+            direction = "up";
+        } else {
+            return; // If we are clicking on the same section, do nothing
+        }
+
+        // Add the appropriate fade-out effect
+        main.classList.remove("fade-in-up", "fade-in-down", "fade-out-up", "fade-out-down");
+        main.classList.add(direction === "down" ? "fade-out-up" : "fade-out-down");
+
+        // Wait for the fade-out to complete before loading new content
+        setTimeout(() => {
+            main.innerHTML = sectionContent;
+
+            // Add the appropriate fade-in effect
+            main.classList.remove("fade-out-up", "fade-out-down");
+            main.classList.add(direction === "down" ? "fade-in-up" : "fade-in-down");
+
+            // Update the current section index
+            currentSectionIndex = newSectionIndex;
+
+            // Update active icon visibility, link styles, and font weight
+            links.forEach((link, index) => {
+                const icon = link.previousElementSibling;
+                const listItem = link.parentElement;
+
+                if (index === currentSectionIndex) {
+                    icon.style.visibility = 'visible'; // Show active icon for the current section
                     link.style.textDecoration = "none";
-                    link.style.opacity = "1";
+                    link.style.opacity = "1"; // Normal style for current section
+                    listItem.style.fontWeight = "500"; // Set font weight for the current section
+                } else {
+                    icon.style.visibility = 'hidden'; // Hide other icons
+                    if (index < currentSectionIndex) {
+                        link.style.textDecoration = "line-through";
+                        link.style.opacity = "0.5"; // Lower opacity for previous sections
+                    } else {
+                        link.style.textDecoration = "none";
+                        link.style.opacity = "1"; // Reset styles for upcoming sections
+                    }
+                    listItem.style.fontWeight = "300"; // Set lighter font weight for inactive sections
                 }
-            }
-        });
+            });
+        }, 500); // Set to the duration of your fade-out animation
     }
 
     // Event listener for list items
     links.forEach((link, index) => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
-            currentSectionIndex = index; // Update the index based on clicked item
-            loadSection(sections[currentSectionIndex]);
+            loadSection(index);
         });
     });
 
     // Event listener for the .next button
     document.querySelector(".next").addEventListener("click", (event) => {
         event.preventDefault();
-        currentSectionIndex = (currentSectionIndex + 1) % sections.length; // Cycle to the next section
-        loadSection(sections[currentSectionIndex]);
+        const nextSectionIndex = (currentSectionIndex + 1) % sections.length; // Cycle to the next section
+        loadSection(nextSectionIndex);
     });
 
-    // Initial load (optional)
-    loadSection(sections[currentSectionIndex]);
+    // Initial load
+    loadSection(currentSectionIndex);
 });
-
-
 
 //--------------paint-wall
 document.addEventListener("DOMContentLoaded", () => {
