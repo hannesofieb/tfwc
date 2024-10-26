@@ -1,0 +1,98 @@
+html, body {
+    margin: 0;
+    background-color: var(--white-warm);
+    overflow: hidden;
+}
+
+.index{
+    display: inline-block;
+}
+.index-line{
+    display: flex;
+    flex-direction: row;
+    font-family: var(--main-font);
+    font-size: 12px;
+    list-style: none;
+}
+
+.index-line a{
+    color: var(--burgundy);
+}
+
+/* Main section styling */
+.main {
+    position: relative; /* Set position to make it a reference point for child elements */
+    height: 100vh; /* Full viewport height */
+}
+
+/* Next button styling */
+.next {
+    position: fixed; /* Fixed position relative to viewport */
+    bottom: 2%; /* Place near the bottom of the viewport */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust to fully center the element */
+    z-index: 10; /* Ensure it's above other elements */
+    text-align: center; /* Center the button content */
+}
+
+
+.next:hover {
+    cursor: pointer;
+    animation: bounce 1s ease-in-out;
+}
+
+/* Keyframes for bounce effect */
+@keyframes bounce {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, -10px); /* Adjust how high the bounce goes */
+    }
+}
+
+#apparence, #nose, #taste {
+    display: none;
+}
+
+
+/* -------------------------------apparance styling */
+#apparance{
+    cursor: url('../assets/cursors/wine-tasting-apparence.cur');
+}
+
+.paint-wall{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allows the swatches to wrap to a new line */
+    gap: 10px; /* Adds space between swatches */
+    justify-content: space-around;
+}
+
+.paint-swatch{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    height: 10%;
+}
+
+.colour {
+    width: 100%;
+    height: 100%;
+}
+
+.label {
+    text-align: right;
+    font-size: 10px;
+    margin-top: 2px;
+    font-family: var(--main-font);
+}
+
+/* Set each .colour background using attribute selector */
+.colour[id] {
+    background-color: attr(id color, #000); /* Fallback to black if no id */
+}
+
