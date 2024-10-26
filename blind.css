@@ -45,7 +45,6 @@ html, body {
 hr{
     border-top: 1px solid var(--burgundy);
     width: 100%;
-
 }
 
 .tasting-notes{
@@ -75,9 +74,8 @@ hr{
 /* Main section styling */
 .main {
     position: relative;
-    height: calc(100vh - 80px); /* Adjust height to account for the padding from the index */
+    height: 98vh; /* Adjust height to account for the padding from the index */
     width: 100vw;
-    padding-top: 60px; /* Create space so the main section content doesn't overlap the index */
     padding-left: 10%; /* Adjust this to make room for the .index if it overlaps horizontally */
     overflow: hidden; /* Allow content to scroll if it’s larger than the section */
 }
@@ -194,11 +192,19 @@ hr{
 }
 
 
-/* -------------------------------apparance styling */
-#apparance{
-    cursor: url('../assets/cursors/wine-tasting-apparence.cur');
+/* -------------------------------intro styling */
+#intro{
+    margin: 0;
 }
 
+.intro{
+    width: 70%;
+    font-family: var(--main-font);
+    color: var(--burgundy);
+}
+
+
+/* -------------------------------apparance styling */
 .paint-wall{
     width: 90%;
     height: 100%;
@@ -208,6 +214,8 @@ hr{
     flex-wrap: wrap; /* Allows the swatches to wrap to a new line */
     gap: 10px; /* Adds space between swatches */
     justify-content: space-around;
+    margin-top: 4vh;
+
 }
 
 .paint-swatch{

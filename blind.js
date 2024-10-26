@@ -46,6 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             main.innerHTML = sectionContent;
 
+            // Update the cursor style if the `apparence` section is loaded
+            if (newSectionIndex === 1) {
+                document.body.style.cursor = "url('tfwc/assets/cursors/wine-tasting-apparence.cur'), auto";
+            } else {
+                document.body.style.cursor = "default"; // Reset to default for other sections
+            }
+
             // Add the appropriate fade-in effect
             main.classList.remove("fade-out-up", "fade-out-down");
             main.classList.add(direction === "down" ? "fade-in-up" : "fade-in-down");
@@ -122,6 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Attach event listeners to the paint swatches initially
     addPaintSwatchListeners();
 });
+
+
 
 //--------------paint-wall
 document.addEventListener("DOMContentLoaded", () => {
