@@ -30,15 +30,21 @@ main{
 }
 
 .wine-cart{
-    overflow-y:visible;
+    overflow-y:scroll;
     display: flex;
     flex-direction: column;
     width: 35vw;
     min-width: auto;
     background-color: var(--burgundy);
     color: var(--ruby);
+    scrollbar-color: var(--ruby) var(--burgundy);
+    scrollbar-width: thin;
+    padding-bottom: 5%;
 }
 
+.suburb{
+    margin:10px 2px;
+}
 .suburb:hover{
     color: var(--white-warm);
 }
@@ -74,6 +80,15 @@ main{
     color: var(--white-warm);
     margin-right: 5px;
     /* padding:1px */
+}
+
+.map{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75vw;
+    overflow:hidden;
+    margin:0.5% 0;
 }
 
 footer {
