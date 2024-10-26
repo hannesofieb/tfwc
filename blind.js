@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Update the cursor style if the `apparence` section is loaded
             if (newSectionIndex === 1) {
-                document.body.style.cursor = "url('tfwc/assets/cursors/wine-tasting-apparence.cur'), auto";
+                document.body.style.cursor = "url('tfwc/assets/cursors/wine-tasting-apparence.png'), auto";
             } else {
                 document.body.style.cursor = "default"; // Reset to default for other sections
             }
