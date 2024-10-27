@@ -17,6 +17,20 @@ function loadBlindData() {
 document.addEventListener("DOMContentLoaded", () => {
     loadBlindData(); // Load CSV data initially
 
+    // Call resetStructure initially to clear default selections
+    // resetStructure();
+
+    // Attach listeners to range inputs
+    attachRangeInputListeners();
+
+    // Select all elements with the class 'colour' and apply background colors
+    const colorElements = document.querySelectorAll(".colour");
+    colorElements.forEach(element => {
+        const colorCode = `#${element.id}`;
+        element.style.backgroundColor = colorCode;
+    });
+
+    // Define sections for navigation
     const sections = {
         intro: "#intro",
         apparence: "#apparence",
@@ -110,8 +124,12 @@ document.addEventListener("DOMContentLoaded", () => {
             addPaintSwatchListeners(); // Re-attach event listeners
             makeDraggable(); // Make draggable elements draggable again
             addFlavourImageListeners(); // Re-attach flavour image listeners
+            // Attach listeners to range inputs
+    attachRangeInputListeners();
         }, 500);
     }
+
+    
 
     // Function to load wines for the carousel in #intro section
     function loadWinesForCarousel() {
@@ -199,6 +217,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Load the first section initially without any animations
     loadSection(currentSection);
 
+    // Call resetStructure initially to clear default selections
+        // resetStructure();
+
+    
+
+
     // Event listeners for list items and buttons
     links.forEach((link) => {
         link.addEventListener("click", (event) => {
@@ -207,6 +231,8 @@ document.addEventListener("DOMContentLoaded", () => {
             loadSection(sectionKey);
         });
     });
+
+    
 
     // Event listeners for next and previous buttons
     document.querySelector("#next").addEventListener("click", (event) => {
@@ -218,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const sectionKeys = Object.keys(sections);
             const currentIndex = sectionKeys.indexOf(currentSection);
             let nextIndex = (currentIndex + 1) % sectionKeys.length;
-    
+
             // Navigate to the next section
             loadSection(sectionKeys[nextIndex]);
         }
@@ -234,21 +260,24 @@ document.addEventListener("DOMContentLoaded", () => {
             const sectionKeys = Object.keys(sections);
             const currentIndex = sectionKeys.indexOf(currentSection);
             let prevIndex = (currentIndex - 1 + sectionKeys.length) % sectionKeys.length;
-    
+
             // Navigate to the previous section
             loadSection(sectionKeys[prevIndex]);
         }
     });
 
-    addPaintSwatchListeners(); // Initial attachment
-    makeDraggable(); // Make draggable elements draggable initially
-    addFlavourImageListeners(); // Make flavour images clickable initially
-    addHoverListeners(); // Add hover listeners for swapping alt text
-    addAnswerButtonListeners(); // Add event listeners to "yes" and "no" buttons
-    addFlavourTasteImageListeners(); // Add event listeners to initial flavour taste images if there are any
+    // Attach additional listeners after loading the sections
+    addPaintSwatchListeners();
+    makeDraggable();
+    addFlavourImageListeners();
+    addHoverListeners();
+    addAnswerButtonListeners();
+    addFlavourTasteImageListeners();
 
-    updateStructure(); // Initialize the structure values on load
+    // Initialize the structure values on load
+    updateStructure();
 });
+
 
 // Function to add event listeners to the paint swatches
 function addPaintSwatchListeners() {
@@ -428,13 +457,14 @@ function loadFlavourImages() {
             makeDraggable();
 
             // Add event listeners to flavour images after they are appended
-            addFlavourImageListeners();
+            addFlavourImageListeners(); // Move this here
         },
         error: function (error) {
             console.error("Error loading CSV:", error);
         },
     });
 }
+
 
 // Function to add hover event listeners to the parent sections
 function addHoverListeners() {
@@ -616,7 +646,17 @@ let structure = {
     acidity: ""
 };
 
+let bodyValues = ["light", "medhttp://127.0.0.1:5500/blind.html#nose-light", "medium", "full", "rich"];
+let sweetnessValues = ["bone dry", "dry", "low", "medium", "sweet", "syrupy", "sickly"];
+let tanninValues = ["low", "medium", "high"];
+let acidityValues = ["low", "med-low", "medium", "med-high", "high"];
+
+
+
+// Attach input listeners to the sliders
 function attachRangeInputListeners() {
+    console.log(structure); // Initial log of the structure
+
     const rangeInputsMap = {
         "body-range": "body",
         "sweetness-range": "sweetness",
@@ -624,64 +664,35 @@ function attachRangeInputListeners() {
         "acidity-range": "acidity"
     };
 
-    // Add input event listener to each range input for live updates
+    // Iterate over each input ID and corresponding section
     for (const [inputId, section] of Object.entries(rangeInputsMap)) {
         const input = document.getElementById(inputId);
         if (input) {
-            input.addEventListener("input", () => {
-                const value = parseInt(input.value);
-                console.log(`Slider moved: ${inputId}, new value: ${value}, section: ${section}`);
-                if (!isNaN(value)) {
-                    updateStructure(section, value);
-                } else {
-                    console.error(`Invalid value for slider: ${inputId}`);
-                }
+            console.log(`Attaching listener for ${inputId}`);
+            input.addEventListener("input", (event) => {
+                console.log(`Slider moved: ${inputId}, new value: ${event.target.value}`);
+                updateStructure(section, parseInt(event.target.value));
             });
         } else {
             console.error(`No input element found for id: ${inputId}`);
         }
     }
-}
-
-// Function to reset the structure object and remove active classes
-function resetStructure() {
-    structure = {
-        body: "",
-        sweetness: "",
-        tannins: "",
-        acidity: ""
-    };
-
-    // Reset the text display to blank initially
-    const structureDiv = document.querySelector("#structure p");
-    if (structureDiv) {
-        structureDiv.textContent = `Structure: `;
-    } else {
-        console.error("#structure p element not found");
-    }
-
-    // Remove "active selected" class from all labels
-    const labels = document.querySelectorAll(".range-labels li");
-    if (labels.length > 0) {
-        labels.forEach(label => {
-            label.classList.remove("active", "selected");
-        });
-    } else {
-        console.error("No range labels found to reset");
-    }
+    
+    
 }
 
 
 // Function to update the structure and display the text in #structure
 function updateStructure(section, value) {
-    // Ensure section is defined and value is within the valid range
+    // Ensure section is defined and value is within] the valid range
+    console.log(`Section: ${section}, Value: ${value}`);
     if (!section || isNaN(value)) {
         console.error(`Invalid section or value: section=${section}, value=${value}`);
         return;
     }
 
     const labels = document.querySelectorAll(`#${section} .range-labels li`);
-    
+
     // Ensure the value is within the bounds of the labels
     if (value < 1 || value > labels.length) {
         console.error(`Label index ${value} out of bounds for section ${section}`);
@@ -699,10 +710,10 @@ function updateStructure(section, value) {
 
     // Update the structure object with the label text
     if (labels[value - 1]) {
-        structure[section] = labels[value - 1].textContent;
+        structure[section] = labels[value-1].textContent;
+        console.log("Updated structure:", structure); // Log the updated structure object
     } else {
         console.error(`No label found for value ${value} in section ${section}`);
-        return;
     }
 
     // Determine sweetness description for structure text
@@ -711,59 +722,46 @@ function updateStructure(section, value) {
         : structure.sweetness || "";
 
     // Update the structure display text
-    const structureDiv = document.querySelector(".structure p");
+    const structureDiv = document.querySelector("#structure p.structure"); // Corrected selector
     if (structureDiv) {
         structureDiv.textContent = `Structure: ${structure.body || ""} body, ${sweetnessText}, ${structure.tannins || ""} tannins, ${structure.acidity || ""} acidity.`;
     } else {
-        console.error(".structure p element not found");
+        console.error("#structure p.structure element not found");
     }
+
+    // Log the current structure for debugging purposes
+    console.log("Updated structure:", structure);
 }
 
 
-// Add event listeners to the range inputs to update structure
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM fully loaded and parsed");
 
-    // Map of range inputs to corresponding structure sections
-    const rangeInputsMap = {
-        "body-range": "body",
-        "sweetness-range": "sweetness",
-        "tannin-range": "tannin",
-        "acidity-range": "acidity"
-    };
+// // Function to reset the structure object and remove active classes
+// function resetStructure() {
+//     structure = {
+//         body: "",
+//         sweetness: "",
+//         tannins: "",
+//         acidity: ""
+//     };
 
-    // Add input event listener to each range input for live updates
-    for (const [inputId, section] of Object.entries(rangeInputsMap)) {
-        const input = document.getElementById(inputId);
-        if (input) {
-            input.addEventListener("input", () => {
-                console.log(`Slider moved: ${inputId}, new value: ${input.value}`);
-                updateStructure(section, input.value);
-            });
-        } else {
-            console.error(`No input element found for id: ${inputId}`);
-        }
-    }
+//     const structureDiv = document.querySelector("#structure p.structure");
+//     if (structureDiv) {
+//         structureDiv.textContent = `Structure: `;
+//     } else {
+//         console.error("#structure p.structure element not found");
+//     }
 
-    // Call resetStructure initially to clear default selections
-    resetStructure();
-});
+//     const labels = document.querySelectorAll(".range-labels li");
+//     if (labels.length > 0) {
+//         labels.forEach(label => {
+//             label.classList.remove("active", "selected");
+//         });
+//     } else {
+//         console.error("No range labels found to reset");
+//     }
+// }
 
 
-//--------------paint-wall colors
-document.addEventListener("DOMContentLoaded", () => {
-    // Select all elements with the class 'colour'
-    const colorElements = document.querySelectorAll(".colour");
-
-    // Loop through each element
-    colorElements.forEach(element => {
-        // Get the color code from the element's id attribute
-        const colorCode = `#${element.id}`;
-
-        // Apply the background color to the element
-        element.style.backgroundColor = colorCode;
-    });
-});
 
 //---------------gif array
 const gifs = {
