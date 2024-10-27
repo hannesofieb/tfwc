@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     
             addPaintSwatchListeners(); // Re-attach event listeners
+            initializeRangeSliders(); // Initialize sliders after loading section
         }, 500);
     }
 
@@ -218,9 +219,46 @@ document.querySelector("#prev").addEventListener("click", (event) => {
 });
 
 addPaintSwatchListeners(); // Initial attachment
+loadSection(currentSection);
 
+// Function to initialize range sliders and add necessary event listeners
+function initializeRangeSliders() {
+    const rangeInputs = document.querySelectorAll('.range input');
 
-    addPaintSwatchListeners(); // Initial attachment
+    rangeInputs.forEach(input => {
+        input.addEventListener('input', function () {
+            updateTrackStyle(this);
+        });
+
+        const labels = input.closest('.range').nextElementSibling.querySelectorAll('li');
+        labels.forEach((label, index) => {
+            label.addEventListener('click', function () {
+                input.value = index + 1;
+                updateTrackStyle(input);
+            });
+        });
+    });
+
+    function updateTrackStyle(rangeInput) {
+        const labels = rangeInput.closest('.range').nextElementSibling.querySelectorAll('li');
+        const value = rangeInput.value;
+
+        labels.forEach((label, index) => {
+            label.classList.remove('active', 'selected');
+            if (index < value) {
+                label.classList.add('selected');
+            }
+            if (index == value - 1) {
+                label.classList.add('active');
+            }
+        });
+
+        const percentage = ((value - 1) / (rangeInput.max - 1)) * 100;
+        rangeInput.style.background = `linear-gradient(to right, #37adbf ${percentage}%, #b2b2b2 ${percentage}%)`;
+    }
+
+    rangeInputs.forEach(input => updateTrackStyle(input));
+}
 });
 
 // Function to make elements draggable

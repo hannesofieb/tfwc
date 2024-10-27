@@ -103,7 +103,14 @@ hr{
     width: 100vw;
     padding-left: 10%; /* Adjust this to make room for the .index if it overlaps horizontally */
     overflow: hidden; /* Allow content to scroll if it’s larger than the section */
+    font-family: var(--main-font);
+    color: var(--burgundy);
 }
+
+.main h1, .main p{
+    font-size: 1.5em;
+}
+
 
 
 /* Fade-in and Fade-out Animations for Different Directions */
@@ -228,7 +235,7 @@ hr{
     width: 70%;
     font-family: var(--main-font);
     color: var(--burgundy);
-    font-size: 2em;
+    /* font-size: 2em; */
 }
 
 .wine-carousel {
@@ -434,3 +441,72 @@ img.gif{
     width: 50%;
     height: auto;
 }
+
+/* -----------------------------texture */
+.range {
+    position: relative;
+    width: 300px;
+    height: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .range input {
+    width: 100%;
+    position: absolute;
+    top: 2px;
+    height: 0;
+    -webkit-appearance: none;
+    cursor: pointer;
+  
+    // Thumb
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      margin-top: -8px; // Adjust to center the thumb
+      border-radius: 50%;
+      background: #37adbf;
+      cursor: pointer;
+    }
+  
+    // Track
+    &::-webkit-slider-runnable-track {
+      height: 2px;
+      cursor: pointer;
+      background: #b2b2b2;
+    }
+  }
+  
+  .range-labels {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+    
+    li {
+      float: left;
+      width: 50px; // Adjust based on your slider width and number of labels
+      text-align: center;
+      color: #b2b2b2;
+      font-size: 12px;
+      cursor: pointer;
+      
+      &::before {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        width: 9px;
+        height: 9px;
+        background: #b2b2b2;
+        border-radius: 50%;
+        margin-bottom: 5px;
+      }
+    }
+    
+    .active {
+      color: #37adbf;
+    }
+    
+    .selected::before {
+      background: #37adbf;
+    }
+  }
