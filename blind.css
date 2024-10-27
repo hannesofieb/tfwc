@@ -230,9 +230,39 @@ hr{
     color: var(--burgundy);
 }
 
-.hero-img{
-    margin: 2% 2% 2% 0;
+.wine-carousel {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px;
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
 }
+
+.wine-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.wine-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.wine {
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px; /* Add rounded corners */
+}
+
+.selected-mark {
+    width: 80%;
+    border: 1px solid var(--burgundy); /* Color for selection indicator */
+    visibility: hidden; /* Hidden by default, shown when wine card is selected */
+}
+
+
 
 /* -------------------------------apparance styling */
 #apparence {

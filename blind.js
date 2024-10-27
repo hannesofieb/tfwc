@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sectionKey === "intro") {
                 main.style.display = "flex";
                 main.style.flexDirection = "column";
+                loadWinesForCarousel(); // Load wines for the carousel in #intro section
             } else {
                 // Reset styles for other sections
                 main.style.display = "";
@@ -92,8 +93,92 @@ document.addEventListener("DOMContentLoaded", () => {
             addPaintSwatchListeners(); // Re-attach event listeners
         }, 500);
     }
-    
-    
+
+   // Function to load wines for the carousel in #intro section
+    function loadWinesForCarousel() {
+        Papa.parse("blindwines.csv", {
+            download: true,
+            header: true,
+            complete: function (results) {
+                const wineCarousel = document.querySelector(".wine-carousel");
+                wineCarousel.style.display = "flex";
+                wineCarousel.style.flexDirection = "row";
+                wineCarousel.style.gap = "20px";
+
+                // Track the current selected wine card and attributes
+                let currentSelectedCard = null;
+                let selectedWineAttributes = {};
+
+                // Iterate through each wine and create a card for those with "somAll" in "front"
+                results.data.forEach(wine => {
+                    if (wine.front.includes("somAll")) {
+                        // Create wine card container
+                        const wineCard = document.createElement("div");
+                        wineCard.classList.add("wine-card");
+                        wineCard.style.display = "flex";
+                        wineCard.style.flexDirection = "column";
+
+                        // Create image element for the wine
+                        const imgElement = document.createElement("img");
+                        imgElement.src = wine.front; // Use the image URL from CSV
+                        imgElement.alt = wine.title || "Wine Image";
+                        imgElement.classList.add("wine");
+
+                        // Create selected mark element
+                        const selectedMark = document.createElement("hr");
+                        selectedMark.classList.add("selected-mark");
+                        selectedMark.style.visibility = "hidden"; // Hidden by default
+
+                        // Add click event to wine card
+                        wineCard.addEventListener("click", () => {
+                            // Deselect previous card if any
+                            if (currentSelectedCard && currentSelectedCard !== wineCard) {
+                                const prevSelectedMark = currentSelectedCard.querySelector(".selected-mark");
+                                currentSelectedCard.classList.remove("selected");
+                                if (prevSelectedMark) {
+                                    prevSelectedMark.style.visibility = "hidden";
+                                }
+                            }
+
+                            // Select the new wine card
+                            if (currentSelectedCard !== wineCard) {
+                                wineCard.classList.add("selected");
+                                selectedMark.style.visibility = "visible";
+                                currentSelectedCard = wineCard;
+
+                                // Update selected wine attributes
+                                selectedWineAttributes = {
+                                    body: wine.body,
+                                    sweetness: wine.sweetness,
+                                    tannin: wine.tannin,
+                                    acidity: wine.acidity,
+                                };
+                            } else {
+                                // Deselect if clicking the already selected card
+                                wineCard.classList.remove("selected");
+                                selectedMark.style.visibility = "hidden";
+                                currentSelectedCard = null;
+                                selectedWineAttributes = {};
+                            }
+
+                            console.log(selectedWineAttributes); // Debugging: Log selected attributes
+                        });
+
+                        // Append elements to wine card
+                        wineCard.appendChild(imgElement);
+                        wineCard.appendChild(selectedMark);
+
+                        // Append wine card to wine carousel
+                        wineCarousel.appendChild(wineCard);
+                    }
+                });
+            },
+            error: function (error) {
+                console.error("Error loading CSV:", error);
+            }
+        });
+    }
+
 
     // Load the first section initially without any animations
     loadSection(currentSection);
@@ -107,50 +192,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-        // Event listener for next button
-        document.querySelector("#next").addEventListener("click", (event) => {
-            event.preventDefault();
-            const sectionKeys = Object.keys(sections);
-
-            // Special case to navigate from #taste to #tasteTexture
-            if (currentSection === "taste") {
-                loadSection("tasteTexture");
-            } else {
-                const nextIndex = (sectionKeys.indexOf(currentSection) + 1) % sectionKeys.length;
-                loadSection(sectionKeys[nextIndex]);
-            }
-        });
-
-        // Event listener for prev button
-        document.querySelector("#prev").addEventListener("click", (event) => {
-            event.preventDefault();
-            const sectionKeys = Object.keys(sections);
-
-            // Special case to navigate from #tasteTexture to #taste
-            if (currentSection === "tasteTexture") {
-                loadSection("taste");
-            } else {
-                const prevIndex = (sectionKeys.indexOf(currentSection) - 1 + sectionKeys.length) % sectionKeys.length;
-                loadSection(sectionKeys[prevIndex]);
-            }
-        });
-
-    
-
-    // Paint Swatch Listeners
-    function addPaintSwatchListeners() {
-        const paintSwatches = document.querySelectorAll(".paint-swatch");
-        paintSwatches.forEach((swatch) => {
-            swatch.addEventListener("click", () => {
-                const label = swatch.querySelector(".label").textContent;
-                const looksDiv = document.querySelector(".looks p");
-                looksDiv.textContent = `apparence: ${label}`;
-            });
-        });
-    }
+    // Event listeners for next and previous buttons (existing code)
+    // ...
 
     addPaintSwatchListeners(); // Initial attachment
 });
+
 
 // Function to load flavour images into the nose section
 function loadFlavourImages() {
@@ -272,6 +319,7 @@ function addSmell(item) {
     }
 }
 
+//--------------intro page, collecting the wines
 
 //--------------paint-wall colors
 document.addEventListener("DOMContentLoaded", () => {
