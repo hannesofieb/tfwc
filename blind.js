@@ -245,6 +245,9 @@ document.addEventListener("DOMContentLoaded", () => {
     addFlavourImageListeners(); // Make flavour images clickable initially
     addHoverListeners(); // Add hover listeners for swapping alt text
     addAnswerButtonListeners(); // Add event listeners to "yes" and "no" buttons
+    addFlavourTasteImageListeners(); // Add event listeners to initial flavour taste images if there are any
+
+    updateStructure(); // Initialize the structure values on load
 });
 
 // Function to add event listeners to the paint swatches
@@ -603,6 +606,148 @@ function addFlavourTasteImageListeners() {
         });
     });
 }
+
+
+// Object to store structure values
+let structure = {
+    body: "",
+    sweetness: "",
+    tannins: "",
+    acidity: ""
+};
+
+function attachRangeInputListeners() {
+    const rangeInputsMap = {
+        "body-range": "body",
+        "sweetness-range": "sweetness",
+        "tannin-range": "tannin",
+        "acidity-range": "acidity"
+    };
+
+    // Add input event listener to each range input for live updates
+    for (const [inputId, section] of Object.entries(rangeInputsMap)) {
+        const input = document.getElementById(inputId);
+        if (input) {
+            input.addEventListener("input", () => {
+                const value = parseInt(input.value);
+                console.log(`Slider moved: ${inputId}, new value: ${value}, section: ${section}`);
+                if (!isNaN(value)) {
+                    updateStructure(section, value);
+                } else {
+                    console.error(`Invalid value for slider: ${inputId}`);
+                }
+            });
+        } else {
+            console.error(`No input element found for id: ${inputId}`);
+        }
+    }
+}
+
+// Function to reset the structure object and remove active classes
+function resetStructure() {
+    structure = {
+        body: "",
+        sweetness: "",
+        tannins: "",
+        acidity: ""
+    };
+
+    // Reset the text display to blank initially
+    const structureDiv = document.querySelector("#structure p");
+    if (structureDiv) {
+        structureDiv.textContent = `Structure: `;
+    } else {
+        console.error("#structure p element not found");
+    }
+
+    // Remove "active selected" class from all labels
+    const labels = document.querySelectorAll(".range-labels li");
+    if (labels.length > 0) {
+        labels.forEach(label => {
+            label.classList.remove("active", "selected");
+        });
+    } else {
+        console.error("No range labels found to reset");
+    }
+}
+
+
+// Function to update the structure and display the text in #structure
+function updateStructure(section, value) {
+    // Ensure section is defined and value is within the valid range
+    if (!section || isNaN(value)) {
+        console.error(`Invalid section or value: section=${section}, value=${value}`);
+        return;
+    }
+
+    const labels = document.querySelectorAll(`#${section} .range-labels li`);
+    
+    // Ensure the value is within the bounds of the labels
+    if (value < 1 || value > labels.length) {
+        console.error(`Label index ${value} out of bounds for section ${section}`);
+        return;
+    }
+
+    // Update the label as active and selected
+    labels.forEach((label, index) => {
+        if (index + 1 === value) {
+            label.classList.add("active", "selected");
+        } else {
+            label.classList.remove("active", "selected");
+        }
+    });
+
+    // Update the structure object with the label text
+    if (labels[value - 1]) {
+        structure[section] = labels[value - 1].textContent;
+    } else {
+        console.error(`No label found for value ${value} in section ${section}`);
+        return;
+    }
+
+    // Determine sweetness description for structure text
+    let sweetnessText = (structure.sweetness && (structure.sweetness.toLowerCase() === "low" || structure.sweetness.toLowerCase() === "medium"))
+        ? `${structure.sweetness} sweetness`
+        : structure.sweetness || "";
+
+    // Update the structure display text
+    const structureDiv = document.querySelector(".structure p");
+    if (structureDiv) {
+        structureDiv.textContent = `Structure: ${structure.body || ""} body, ${sweetnessText}, ${structure.tannins || ""} tannins, ${structure.acidity || ""} acidity.`;
+    } else {
+        console.error(".structure p element not found");
+    }
+}
+
+
+// Add event listeners to the range inputs to update structure
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM fully loaded and parsed");
+
+    // Map of range inputs to corresponding structure sections
+    const rangeInputsMap = {
+        "body-range": "body",
+        "sweetness-range": "sweetness",
+        "tannin-range": "tannin",
+        "acidity-range": "acidity"
+    };
+
+    // Add input event listener to each range input for live updates
+    for (const [inputId, section] of Object.entries(rangeInputsMap)) {
+        const input = document.getElementById(inputId);
+        if (input) {
+            input.addEventListener("input", () => {
+                console.log(`Slider moved: ${inputId}, new value: ${input.value}`);
+                updateStructure(section, input.value);
+            });
+        } else {
+            console.error(`No input element found for id: ${inputId}`);
+        }
+    }
+
+    // Call resetStructure initially to clear default selections
+    resetStructure();
+});
 
 
 //--------------paint-wall colors
