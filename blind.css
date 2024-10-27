@@ -228,6 +228,7 @@ hr{
     width: 70%;
     font-family: var(--main-font);
     color: var(--burgundy);
+    font-size: 2em;
 }
 
 .wine-carousel {
