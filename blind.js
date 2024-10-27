@@ -272,9 +272,6 @@ function addFlavourImageListeners() {
     });
 }
 
-
-
-
 // Load flavour images into the nose section and make them draggable
 function loadFlavourImages() {
     const flavourContainer = document.createElement("div");
@@ -292,7 +289,7 @@ function loadFlavourImages() {
                     const imgElement = document.createElement("img");
                     imgElement.className = `flavour-image blind ${item.flavour} ${item.sub}`;
                     imgElement.src = item.img;
-                    imgElement.title = `${item.flavour} ${item.sub}`;
+                    imgElement.alt = item.flavour; // Use flavour for alt text
 
                     // Set initial position
                     imgElement.style.position = "absolute";
@@ -317,6 +314,9 @@ function loadFlavourImages() {
 
             // Make the new images draggable
             makeDraggable();
+
+            // Add event listeners to flavour images after they are appended
+            addFlavourImageListeners();
         },
         error: function (error) {
             console.error("Error loading CSV:", error);
@@ -324,18 +324,19 @@ function loadFlavourImages() {
     });
 }
 
+
 // Function to make elements draggable
 function makeDraggable() {
     // Get all elements with the class name "flavour-image" or "draggable"
     const draggableElements = document.querySelectorAll(".flavour-image, .draggable");
 
-    // Apply dragElement function to each draggable element
     draggableElements.forEach(elmnt => {
         dragElement(elmnt);
     });
 
     function dragElement(elmnt) {
         let initialMouseX = 0, initialMouseY = 0, initialElementX = 0, initialElementY = 0;
+        let isDragging = false;
 
         // Start dragging on mouse down
         elmnt.onmousedown = dragMouseDown;
@@ -357,6 +358,9 @@ function makeDraggable() {
             // Pause any animations while dragging
             elmnt.style.animationPlayState = "paused";
             document.body.style.cursor = "grabbing";
+
+            // Reset isDragging to false initially
+            isDragging = false;
         }
 
         function elementDrag(e) {
@@ -366,6 +370,11 @@ function makeDraggable() {
             // Calculate the new position of the element based on the mouse movement
             let deltaX = e.clientX - initialMouseX;
             let deltaY = e.clientY - initialMouseY;
+
+            // If there is a significant movement, set isDragging to true
+            if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+                isDragging = true;
+            }
 
             // Set the element's new position to match the mouse movement
             elmnt.style.left = initialElementX + deltaX + "px";
@@ -380,9 +389,68 @@ function makeDraggable() {
             // Resume any animations after dragging
             elmnt.style.animationPlayState = "running";
             document.body.style.cursor = "default";
+
+            // If it wasn't a drag, we consider it a click
+            if (!isDragging) {
+                // Call a click event handler if needed
+                elmnt.click();
+            }
         }
     }
 }
+
+// Call makeDraggable() after images are appended
+function loadFlavourImages() {
+    const flavourContainer = document.createElement("div");
+    flavourContainer.classList.add("flavour-container");
+
+    Papa.parse("blind.csv", {
+        download: true,
+        header: true,
+        complete: function (results) {
+            const shuffledData = results.data.sort(() => 0.5 - Math.random());
+            const randomFlavours = shuffledData.slice(0, 30);
+
+            randomFlavours.forEach((item) => {
+                if (item.flavour && item.sub && item.img) {
+                    const imgElement = document.createElement("img");
+                    imgElement.className = `flavour-image blind ${item.flavour} ${item.sub}`;
+                    imgElement.src = item.img;
+                    imgElement.alt = item.flavour;
+
+                    // Set initial position
+                    imgElement.style.position = "absolute";
+                    imgElement.style.top = `${Math.random() * 80}%`;
+                    imgElement.style.left = `${Math.random() * 80}%`;
+
+                    // Assign a random movement pattern with varied duration
+                    const movementPatterns = [
+                        { name: "float-clockwise", duration: "15s" },
+                        { name: "float-anticlockwise", duration: "18s" },
+                        { name: "float-zigzag", duration: "20s" },
+                    ];
+                    const randomPattern = movementPatterns[Math.floor(Math.random() * movementPatterns.length)];
+                    imgElement.style.animation = `${randomPattern.name} ${randomPattern.duration} ease-in-out infinite`;
+
+                    flavourContainer.appendChild(imgElement);
+                }
+            });
+
+            const main = document.querySelector(".main");
+            main.appendChild(flavourContainer); // Append flavour container to the main section
+
+            // Make the new images draggable
+            makeDraggable();
+
+            // Add event listeners to flavour images after they are appended
+            addFlavourImageListeners();
+        },
+        error: function (error) {
+            console.error("Error loading CSV:", error);
+        },
+    });
+}
+
 
 // Function to add hover event listeners to the parent sections
 function addHoverListeners() {
