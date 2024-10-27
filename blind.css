@@ -244,6 +244,7 @@ hr{
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s;
+    width: 5%;
 }
 
 .wine-card:hover {
@@ -251,7 +252,7 @@ hr{
 }
 
 .wine {
-    max-width: 150px;
+    width: 100%;
     height: auto;
     border-radius: 5px; /* Add rounded corners */
 }
