@@ -94,24 +94,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 500);
     }
 
-   // Function to load wines for the carousel in #intro section
-    function loadWinesForCarousel() {
-        Papa.parse("blindwines.csv", {
-            download: true,
-            header: true,
-            complete: function (results) {
-                const wineCarousel = document.querySelector(".wine-carousel");
-                wineCarousel.style.display = "flex";
-                wineCarousel.style.flexDirection = "row";
-                wineCarousel.style.gap = "20px";
+        // Function to load wines for the carousel in #intro section
+        function loadWinesForCarousel() {
+            Papa.parse("blindwines.csv", {
+                download: true,
+                header: true,
+                complete: function (results) {
+                    const wineCarousel = document.querySelector(".wine-carousel");
+                    wineCarousel.style.display = "flex";
+                    wineCarousel.style.flexDirection = "row";
+                    wineCarousel.style.gap = "20px";
 
-                // Track the current selected wine card and attributes
-                let currentSelectedCard = null;
-                let selectedWineAttributes = {};
+                    // Track the current selected wine card and attributes
+                    let currentSelectedCard = null;
+                    let selectedWineAttributes = {};
 
-                // Iterate through each wine and create a card for those with "somAll" in "front"
-                results.data.forEach(wine => {
-                    if (wine.front.includes("somAll")) {
+                    // Iterate through each wine and create a card for all images from CSV
+                    results.data.forEach(wine => {
                         // Create wine card container
                         const wineCard = document.createElement("div");
                         wineCard.classList.add("wine-card");
@@ -170,14 +169,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         // Append wine card to wine carousel
                         wineCarousel.appendChild(wineCard);
-                    }
-                });
-            },
-            error: function (error) {
-                console.error("Error loading CSV:", error);
-            }
-        });
-    }
+                    });
+                },
+                error: function (error) {
+                    console.error("Error loading CSV:", error);
+                }
+            });
+        }
+
 
 
     // Load the first section initially without any animations
@@ -192,8 +191,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Event listeners for next and previous buttons (existing code)
-    // ...
+    // Event listeners for list items and buttons
+    links.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const sectionKey = link.getAttribute("href").substring(1);
+            loadSection(sectionKey);
+        });
+});
+
+// Event listeners for next and previous buttons
+document.querySelector("#next").addEventListener("click", (event) => {
+    event.preventDefault();
+    const sectionKeys = Object.keys(sections);
+    const currentIndex = sectionKeys.indexOf(currentSection);
+    const nextIndex = (currentIndex + 1) % sectionKeys.length;
+    loadSection(sectionKeys[nextIndex]);
+});
+
+document.querySelector("#prev").addEventListener("click", (event) => {
+    event.preventDefault();
+    const sectionKeys = Object.keys(sections);
+    const currentIndex = sectionKeys.indexOf(currentSection);
+    const prevIndex = (currentIndex - 1 + sectionKeys.length) % sectionKeys.length;
+    loadSection(sectionKeys[prevIndex]);
+});
+
+addPaintSwatchListeners(); // Initial attachment
+
 
     addPaintSwatchListeners(); // Initial attachment
 });
@@ -319,7 +344,6 @@ function addSmell(item) {
     }
 }
 
-//--------------intro page, collecting the wines
 
 //--------------paint-wall colors
 document.addEventListener("DOMContentLoaded", () => {

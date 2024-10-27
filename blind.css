@@ -233,10 +233,11 @@ hr{
 .wine-carousel {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 20px;
     padding: 10px;
-    overflow-x: auto; /* Allows horizontal scrolling if needed */
+    overflow-x: hidden; /* Allows horizontal scrolling if needed */
 }
 
 .wine-card {
@@ -260,7 +261,7 @@ hr{
 
 .selected-mark {
     width: 80%;
-    border: 1px solid var(--burgundy); /* Color for selection indicator */
+    border: 3px solid var(--burgundy); /* Color for selection indicator */
     visibility: hidden; /* Hidden by default, shown when wine card is selected */
 }
 
