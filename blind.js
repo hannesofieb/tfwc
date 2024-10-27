@@ -239,6 +239,7 @@ function addPaintSwatchListeners() {
     });
 }
 
+// Function to add event listeners to the paint swatches
 function addFlavourImageListeners() {
     const flavourImages = document.querySelectorAll(".flavour-image");
 
@@ -247,82 +248,40 @@ function addFlavourImageListeners() {
         return;
     }
 
+    // Initialize an array to keep track of the unique flavours
+    let flavourArray = [];
+
     flavourImages.forEach(image => {
         console.log(`Attaching click listener to image with alt: ${image.alt}`);
         image.addEventListener("click", () => {
-            // Extract the alt text from the clicked image
-            const flavour = image.alt;
+            // Extract the alt text from the clicked image and split into words
+            const flavours = image.alt.trim().split(" ");
 
-            // Find the smells div to update its text content
+            // Iterate over each word from the alt text
+            flavours.forEach(flavour => {
+                flavour = flavour.trim().toLowerCase(); // Remove extra spaces and standardize to lowercase for consistency
+
+                // Check if the flavour already exists in the array
+                if (flavourArray.includes(flavour)) {
+                    // If it exists, remove it (pop it out)
+                    flavourArray = flavourArray.filter(item => item !== flavour);
+                } else {
+                    // If it doesn't exist and there's space, add it
+                    if (flavourArray.length < 10) {
+                        flavourArray.push(flavour);
+                    }
+                }
+            });
+
+            // Update the smells div to reflect the current array
             const smellsDiv = document.querySelector(".smells p");
-            console.log("Found smells div:", smellsDiv);
-            
-            // Split the current text, remove "nose:" from the array, and trim any whitespace
-            let currentSmells = smellsDiv.textContent.split(", ").map(smell => smell.trim()).filter(smell => smell !== "nose:");
+            smellsDiv.textContent = `nose: ${flavourArray.join(", ")}`;
 
-            console.log("Current smells before update:", currentSmells);
-
-            // Check if there's room and if the flavour hasn't been added yet
-            if (currentSmells.length < 10 && !currentSmells.includes(flavour)) {
-                currentSmells.push(flavour);
-                smellsDiv.textContent = `nose: ${currentSmells.join(", ")}`;
-                console.log("Updated smells:", smellsDiv.textContent);
-            }
+            console.log("Updated flavours:", flavourArray);
         });
     });
 }
 
-// Load flavour images into the nose section and make them draggable
-function loadFlavourImages() {
-    const flavourContainer = document.createElement("div");
-    flavourContainer.classList.add("flavour-container");
-
-    Papa.parse("blind.csv", {
-        download: true,
-        header: true,
-        complete: function (results) {
-            const shuffledData = results.data.sort(() => 0.5 - Math.random());
-            const randomFlavours = shuffledData.slice(0, 30);
-
-            randomFlavours.forEach((item) => {
-                if (item.flavour && item.sub && item.img) {
-                    const imgElement = document.createElement("img");
-                    imgElement.className = `flavour-image blind ${item.flavour} ${item.sub}`;
-                    imgElement.src = item.img;
-                    imgElement.alt = item.flavour; // Use flavour for alt text
-
-                    // Set initial position
-                    imgElement.style.position = "absolute";
-                    imgElement.style.top = `${Math.random() * 80}%`;
-                    imgElement.style.left = `${Math.random() * 80}%`;
-
-                    // Assign a random movement pattern with varied duration
-                    const movementPatterns = [
-                        { name: "float-clockwise", duration: "15s" },
-                        { name: "float-anticlockwise", duration: "18s" },
-                        { name: "float-zigzag", duration: "20s" },
-                    ];
-                    const randomPattern = movementPatterns[Math.floor(Math.random() * movementPatterns.length)];
-                    imgElement.style.animation = `${randomPattern.name} ${randomPattern.duration} ease-in-out infinite`;
-
-                    flavourContainer.appendChild(imgElement);
-                }
-            });
-
-            const main = document.querySelector(".main");
-            main.appendChild(flavourContainer); // Append flavour container to the main section
-
-            // Make the new images draggable
-            makeDraggable();
-
-            // Add event listeners to flavour images after they are appended
-            addFlavourImageListeners();
-        },
-        error: function (error) {
-            console.error("Error loading CSV:", error);
-        },
-    });
-}
 
 
 // Function to make elements draggable
@@ -399,7 +358,7 @@ function makeDraggable() {
     }
 }
 
-// Call makeDraggable() after images are appended
+// load and retrieve image info for flavours
 function loadFlavourImages() {
     const flavourContainer = document.createElement("div");
     flavourContainer.classList.add("flavour-container");
@@ -416,7 +375,9 @@ function loadFlavourImages() {
                     const imgElement = document.createElement("img");
                     imgElement.className = `flavour-image blind ${item.flavour} ${item.sub}`;
                     imgElement.src = item.img;
-                    imgElement.alt = item.flavour;
+
+                    // Set alt text to include both flavour and sub
+                    imgElement.alt = `${item.flavour} ${item.sub}`;
 
                     // Set initial position
                     imgElement.style.position = "absolute";
@@ -452,32 +413,41 @@ function loadFlavourImages() {
 }
 
 
+
 // Function to add hover event listeners to the parent sections
 function addHoverListeners() {
+    // Selecting all sections inside #tasteTexture's range-container
     const parentSections = document.querySelectorAll("#tasteTexture .range-container > section");
 
     parentSections.forEach((section) => {
+        // Adding mouseenter event
         section.addEventListener("mouseenter", () => {
-            const mainP = section.querySelector("p:not(.alt)");
-            const altP = section.querySelector("p.alt");
+            console.log("Hover over:", section.id); // Check if the event is firing and which section is being hovered
+
+            const mainP = section.querySelector("p:not(.alt)"); // Regular paragraph
+            const altP = section.querySelector("p.alt");        // Alternate paragraph
 
             if (mainP && altP) {
-                mainP.style.display = "none";
-                altP.style.display = "block";
+                mainP.style.display = "none";  // Hide regular paragraph
+                altP.style.display = "block";  // Show alternate paragraph
             }
         });
 
+        // Adding mouseleave event
         section.addEventListener("mouseleave", () => {
+            console.log("Mouse leave:", section.id); // Check if the event is firing and which section the mouse left
+
             const mainP = section.querySelector("p:not(.alt)");
             const altP = section.querySelector("p.alt");
 
             if (mainP && altP) {
-                mainP.style.display = "block";
-                altP.style.display = "none";
+                mainP.style.display = "block"; // Show regular paragraph
+                altP.style.display = "none";   // Hide alternate paragraph
             }
         });
     });
 }
+
 
 //--------------paint-wall colors
 document.addEventListener("DOMContentLoaded", () => {
