@@ -211,30 +211,33 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listeners for next and previous buttons
     document.querySelector("#next").addEventListener("click", (event) => {
         event.preventDefault();
-        const sectionKeys = Object.keys(sections);
-        const currentIndex = sectionKeys.indexOf(currentSection);
-        let nextIndex = (currentIndex + 1) % sectionKeys.length;
-
-        // Ensure correct navigation through subsections
-        if (sectionKeys[currentIndex] === "taste" && currentIndex + 1 < sectionKeys.length) {
-            nextIndex = currentIndex + 1;
+        if (currentSection === "taste" && document.querySelector("#depends-on-answer").children.length > 0) {
+            // Move to tasteTexture section after depends-on-answer
+            loadSection("tasteTexture");
+        } else {
+            const sectionKeys = Object.keys(sections);
+            const currentIndex = sectionKeys.indexOf(currentSection);
+            let nextIndex = (currentIndex + 1) % sectionKeys.length;
+    
+            // Navigate to the next section
+            loadSection(sectionKeys[nextIndex]);
         }
-
-        loadSection(sectionKeys[nextIndex]);
     });
 
     document.querySelector("#prev").addEventListener("click", (event) => {
         event.preventDefault();
-        const sectionKeys = Object.keys(sections);
-        const currentIndex = sectionKeys.indexOf(currentSection);
-        let prevIndex = (currentIndex - 1 + sectionKeys.length) % sectionKeys.length;
-
-        // Ensure correct navigation through subsections
-        if (sectionKeys[currentIndex] === "tasteFlav" && currentIndex - 1 >= 0) {
-            prevIndex = currentIndex - 1;
+        if (currentSection === "tasteTexture") {
+            // Move back to depends-on-answer and re-display #check-answer
+            loadSection("taste");
+            document.querySelector("#check-answer").style.display = "block";
+        } else {
+            const sectionKeys = Object.keys(sections);
+            const currentIndex = sectionKeys.indexOf(currentSection);
+            let prevIndex = (currentIndex - 1 + sectionKeys.length) % sectionKeys.length;
+    
+            // Navigate to the previous section
+            loadSection(sectionKeys[prevIndex]);
         }
-
-        loadSection(sectionKeys[prevIndex]);
     });
 
     addPaintSwatchListeners(); // Initial attachment
@@ -508,6 +511,9 @@ function handleYesButtonClick() {
         }
     });
 
+    // Attach event listeners to the newly added flavour-taste images
+    addFlavourTasteImageListeners();
+
     // Hide the #check-answer div when #depends-on-answer is updated
     checkAnswerDiv.style.display = 'none';
 }
@@ -545,10 +551,58 @@ function handleNoButtonClick() {
         }
     });
 
+    // Attach event listeners to the newly added flavour-taste images
+    addFlavourTasteImageListeners();
+
     // Hide the #check-answer div when #depends-on-answer is updated
     checkAnswerDiv.style.display = 'none';
 }
 
+// Array to keep track of selected tastes
+let selectedTastes = [];
+
+// Function to add hover and click listeners to flavour taste images
+function addFlavourTasteImageListeners() {
+    const flavourImages = document.querySelectorAll(".flavour-taste-img img");
+
+    flavourImages.forEach(image => {
+        // Scale on hover
+        image.addEventListener("mouseenter", () => {
+            image.style.transform = "scale(1.1)";
+        });
+
+        image.addEventListener("mouseleave", () => {
+            if (!selectedTastes.includes(image.alt)) {
+                // Only shrink back if the image is not selected
+                image.style.transform = "scale(1)";
+            }
+        });
+
+        // Toggle selection on click
+        image.addEventListener("click", () => {
+            const flavors = image.alt.split(/[\s,]+/).map(flavor => flavor.trim().toLowerCase());
+
+            // Check if the flavor is already selected
+            if (selectedTastes.some(flavor => flavors.includes(flavor))) {
+                // If already selected, remove it
+                selectedTastes = selectedTastes.filter(flavor => !flavors.includes(flavor));
+                image.style.transform = "scale(1)";
+            } else {
+                // If not selected, add it (but ensure not more than 10 selected)
+                if (selectedTastes.length + flavors.length <= 10) {
+                    selectedTastes.push(...flavors);
+                }
+                image.style.transform = "scale(1.1)";
+            }
+
+            // Update the `.tastes` element
+            const tastesDiv = document.querySelector(".tastes p");
+            tastesDiv.textContent = `flavour: ${selectedTastes.join(", ")}`;
+
+            console.log("Updated selected tastes:", selectedTastes);
+        });
+    });
+}
 
 
 //--------------paint-wall colors

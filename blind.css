@@ -454,6 +454,9 @@ img.gif{
     flex-direction: row;
     flex-wrap: wrap;
 }
+.flavour-taste-img img {
+    transition: transform 0.3s ease-in-out;
+}
 
 /* -----------------------------texture */
 p.alt {
