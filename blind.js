@@ -1,5 +1,22 @@
+// Load the CSV data for flavours
+let blindData = []; // Store parsed CSV data here for later use
+function loadBlindData() {
+    Papa.parse("blind.csv", {
+        download: true,
+        header: true,
+        complete: function(results) {
+            blindData = results.data; // Store the data for later usage
+        },
+        error: function(error) {
+            console.error("Error loading blind.csv:", error);
+        }
+    });
+}
+
 //--------------page structure (links and ids filling the main section)
 document.addEventListener("DOMContentLoaded", () => {
+    loadBlindData(); // Load CSV data initially
+
     const sections = {
         intro: "#intro",
         apparence: "#apparence",
@@ -224,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     makeDraggable(); // Make draggable elements draggable initially
     addFlavourImageListeners(); // Make flavour images clickable initially
     addHoverListeners(); // Add hover listeners for swapping alt text
+    addAnswerButtonListeners(); // Add event listeners to "yes" and "no" buttons
 });
 
 // Function to add event listeners to the paint swatches
@@ -412,8 +430,6 @@ function loadFlavourImages() {
     });
 }
 
-
-
 // Function to add hover event listeners to the parent sections
 function addHoverListeners() {
     // Selecting all sections inside #tasteTexture's range-container
@@ -447,6 +463,92 @@ function addHoverListeners() {
         });
     });
 }
+
+// Function to add event listeners to the yes and no buttons
+function addAnswerButtonListeners() {
+    const yesButton = document.querySelector("#yes");
+    const noButton = document.querySelector("#no");
+
+    if (yesButton && noButton) {
+        yesButton.addEventListener("click", handleYesButtonClick);
+        noButton.addEventListener("click", handleNoButtonClick);
+    }
+}
+
+// Handle Yes Button Click: Append matching flavour images
+function handleYesButtonClick() {
+    console.log("Yes button clicked"); // Add this to verify if the click event is being registered
+    const dependsOnAnswerDiv = document.querySelector("#depends-on-answer");
+    const checkAnswerDiv = document.querySelector("#check-answer");
+    const yesSection = document.querySelector("#yes-btn-clicked");
+    if (!dependsOnAnswerDiv || !checkAnswerDiv || !yesSection) return;
+
+    // Clear the existing content
+    dependsOnAnswerDiv.innerHTML = '';
+
+    // Clone the entire #yes-btn-clicked section and append it to #depends-on-answer
+    const clonedYesSection = yesSection.cloneNode(true);
+    dependsOnAnswerDiv.appendChild(clonedYesSection);
+
+    // Get the current smells from the `.smells` element
+    const smellsText = document.querySelector(".smells p").textContent || "";
+    const smellsArray = smellsText.replace("nose: ", "").split(", ").map(smell => smell.trim().toLowerCase());
+
+    // Find the .flavour-taste-img div inside the cloned content
+    const flavourTasteImgDiv = clonedYesSection.querySelector(".flavour-taste-img");
+
+    // Filter the CSV data and get images for flavours that match the smells array
+    blindData.forEach(item => {
+        if (smellsArray.includes(item.sub.toLowerCase())) {
+            const imgElement = document.createElement("img");
+            imgElement.src = item.img;
+            imgElement.alt = `${item.flavour} ${item.sub}`;
+            imgElement.className = "flavour-image";
+            flavourTasteImgDiv.appendChild(imgElement);
+        }
+    });
+
+    // Hide the #check-answer div when #depends-on-answer is updated
+    checkAnswerDiv.style.display = 'none';
+}
+
+// Handle No Button Click: Append non-matching flavour images
+function handleNoButtonClick() {
+    console.log("No button clicked"); // Add this to verify if the click event is being registered
+    const dependsOnAnswerDiv = document.querySelector("#depends-on-answer");
+    const checkAnswerDiv = document.querySelector("#check-answer");
+    const noSection = document.querySelector("#no-btn-clicked");
+    if (!dependsOnAnswerDiv || !checkAnswerDiv || !noSection) return;
+
+    // Clear the existing content
+    dependsOnAnswerDiv.innerHTML = '';
+
+    // Clone the entire #no-btn-clicked section and append it to #depends-on-answer
+    const clonedNoSection = noSection.cloneNode(true);
+    dependsOnAnswerDiv.appendChild(clonedNoSection);
+
+    // Get the current smells from the `.smells` element
+    const smellsText = document.querySelector(".smells p").textContent || "";
+    const smellsArray = smellsText.replace("nose: ", "").split(", ").map(smell => smell.trim().toLowerCase());
+
+    // Find the .flavour-taste-img div inside the cloned content
+    const flavourTasteImgDiv = clonedNoSection.querySelector(".flavour-taste-img");
+
+    // Filter the CSV data and get images for flavours that do NOT match the smells array
+    blindData.forEach(item => {
+        if (!smellsArray.includes(item.sub.toLowerCase())) {
+            const imgElement = document.createElement("img");
+            imgElement.src = item.img;
+            imgElement.alt = `${item.flavour} ${item.sub}`;
+            imgElement.className = "flavour-image";
+            flavourTasteImgDiv.appendChild(imgElement);
+        }
+    });
+
+    // Hide the #check-answer div when #depends-on-answer is updated
+    checkAnswerDiv.style.display = 'none';
+}
+
 
 
 //--------------paint-wall colors

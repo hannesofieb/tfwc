@@ -109,6 +109,7 @@ hr{
 
 .main h1, .main p{
     font-size: 1.5em;
+    margin-top: 2%;
 }
 
 
@@ -179,9 +180,9 @@ hr{
 /* Previous button styling */
 #prev img {
     position: absolute; /* Set position to absolute relative to its parent container */
-    bottom: 12%; /* Position above the next button */
+    bottom: 88%; /* Position above the next button */
     right: 1%;
-    width: 15%;
+    width: 35%;
     cursor: pointer;
     transform: rotate(180deg); /* Rotate the image 180 degrees */
 }
@@ -448,6 +449,12 @@ img.gif{
     height: auto;
 }
 
+#depends-on-answer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 /* -----------------------------texture */
 p.alt {
     display: none;
@@ -458,7 +465,7 @@ p.alt {
     margin: 2% 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     height: 90%;
     width: 80%;
 }

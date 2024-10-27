@@ -218,18 +218,25 @@
     </section>
 
     <section id="taste">
-        <h1>does it taste like it smells?</h1>
-        <button id="yes">yes</button>
-        <button id="no">no</button>
-        <section class="flavour-taste-select">
-            <section id="yes-btn-clicked">
-                <div class="flavour-taste-img"></div>
-                testing
+        <section class="container">
+            <div id="check-answer">
+                <h1>does it taste like it smells?</h1>
+                <button id="yes" onclick="handleYesButtonClick()">yes</button>
+                <button id="no" onclick="handleNoButtonClick()">no</button>
+            </div>
+            <div id="depends-on-answer"></div>
+            <section class="flavour-taste-select" style="display: none;">
+                <section id="yes-btn-clicked">
+                    <p>sometimes, some flavours becomes more dominant than others when you taste wine. <b>Select the ones you felt became more apparent</b></p>
+                    <div class="flavour-taste-img"></div>
+                </section>
+                <section id="no-btn-clicked">
+                    <h1>click on new flavours you're tasting</h1>
+                    <div class="flavour-taste-img"></div>
+                </section>
             </section>
-            <section id="no-btn-clicked">
-                <div class="flavour-taste-img"></div>
-                if this works
-            </section>
+        </section>
+    
         </section>
         <section id="tasteTexture">
             <section class="container">
@@ -296,7 +303,6 @@
                 </div>
                 
         </section>
-        
     </section>
 
 
