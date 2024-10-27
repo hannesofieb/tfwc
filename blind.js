@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Add flex styles only when loading the #intro section
             if (sectionKey === "intro") {
                 main.style.display = "flex";
-                main.style.flexDirection = "row";
+                main.style.flexDirection = "column";
             } else {
                 // Reset styles for other sections
                 main.style.display = "";
@@ -55,6 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
             main.classList.add(direction === "down" ? "fade-in-up" : "fade-in-down");
     
             currentSection = sectionKey;
+    
+            // Update the GIF in #gif-instruction based on the current section
+            const gifInstruction = document.querySelector("#gif-instruction");
+            if (gifs[sectionKey]) {
+                gifInstruction.src = gifs[sectionKey];
+                gifInstruction.style.display = "block"; // Make sure the GIF is visible
+            } else {
+                gifInstruction.style.display = "none"; // Hide if no GIF is defined for the section
+            }
     
             // Update the visibility and styling of the icons and links
             links.forEach((link) => {
@@ -83,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             addPaintSwatchListeners(); // Re-attach event listeners
         }, 500);
     }
+    
     
 
     // Load the first section initially without any animations
@@ -279,3 +289,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //---------------gif array
+const gifs = {
+    intro: "https://media.tenor.com/U330eSUYomcAAAAM/wine-genie%C3%9Fer.gif",
+    apparence: "https://media1.tenor.com/m/q85ldKgtGpkAAAAC/swirl-wine.gif",
+    nose: "https://media4.giphy.com/media/2zco8yS1r8Rhx2cxcf/200w.gif",
+    taste: "https://media1.tenor.com/m/gwSt5vdhFQIAAAAd/the-office-michael-scott.gif",
+    tasteFlav: "https://media1.tenor.com/m/gwSt5vdhFQIAAAAd/the-office-michael-scott.gif",  // replace with actual URL
+    tasteTexture: "https://media1.tenor.com/m/COAVJha-9yYAAAAd/drinking-wine-david-rose.gif"  // replace with actual URL
+};
