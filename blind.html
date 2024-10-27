@@ -61,6 +61,7 @@
     </section>
 
     <section id="apparence">
+        <img src="assets/cursors/wine-tasting-apparence.png" alt="" class="draggable">
         <div class="paint-wall">
             <div class="paint-swatch">
                 <div class= "colour" id="f7f5e3"></div>
@@ -231,58 +232,69 @@
             </section>
         </section>
         <section id="tasteTexture">
-            <section id="body">
-                <div class="range">
-                    <input type="range" min="1" max="5" steps="1" value="1">
+            <section class="container">
+                <div class="range-container">
+                    <section id="body">
+                        <p>what is the body of the wine?</p>
+                        <p class="alt">how thick does the liquid feel?</p>
+                        <div class="range">
+                            <input type="range" min="1" max="5" steps="1" value="1">
+                        </div>
+                        <ul class="range-labels">
+                            <li class="active selected">Light</li>
+                            <li>Med-Light</li>
+                            <li>Medium</li>
+                            <li>Full</li>
+                            <li>Rich</li>
+                        </ul>
+                    </section>
+                    <section id="sweetness">
+                        <p>wine might be wet, but how dry is it?</p>
+                        <p class="alt">does it taste sweet or not?</p>
+                        <div class="range">
+                            <input type="range" min="1" max="8" steps="1" value="1">
+                        </div>
+                        <ul class="range-labels">
+                            <li class="active selected">Sweet</li>
+                            <li>Bone Dry</li>
+                            <li>Dry</li>
+                            <li>Low</li>
+                            <li>Medium</li>
+                            <li>Sweet</li>
+                            <li>Syrupy</li>
+                            <li>Sickly</li>
+                        </ul>
+                    </section>
+                    <section id="tannin">
+                        <p>what are the tannin levels?</p>
+                        <p class="alt">how dry is your mouth after your little sip?</p>
+                        <div class="range">
+                            <input type="range" min="1" max="3" steps="1" value="1">
+                        </div>
+                        <ul class="range-labels">
+                            <li class="active selected">Low</li>
+                            <li>Medium</li>
+                            <li>High</li>
+                        </ul>
+                    </section>
+                    <section id="acidity">
+                        <p>acidity levels are...?</p>
+                        <p class="alt">basically tartness</p>
+                        <div class="range">
+                            <input type="range" min="1" max="5" steps="1" value="1">
+                        </div>
+                        <ul class="range-labels">
+                            <li class="active selected">Low</li>
+                            <li>Med-Low</li>
+                            <li>Medium</li>
+                            <li>Med-High</li>
+                            <li>High</li>
+                        </ul>
+                    </section>
                 </div>
-                <ul class="range-labels">
-                    <li class="active selected">Light</li>
-                    <li>Med-Light</li>
-                    <li>Medium</li>
-                    <li>Full</li>
-                    <li>Rich</li>
-                </ul>
-            </section>
-        
-            <section id="sweetness">
-                <div class="range">
-                    <input type="range" min="1" max="7" steps="1" value="1">
+                </section>
                 </div>
-                <ul class="range-labels">
-                    <li class="active selected">Sweet</li>
-                    <li>Bone Dry</li>
-                    <li>Dry</li>
-                    <li>Low</li>
-                    <li>Medium</li>
-                    <li>Sweet</li>
-                    <li>Syrupy</li>
-                    <li>Sickly</li>
-                </ul>
-            </section>
-        
-            <section id="tannin">
-                <div class="range">
-                    <input type="range" min="1" max="3" steps="1" value="1">
-                </div>
-                <ul class="range-labels">
-                    <li class="active selected">Low</li>
-                    <li>Medium</li>
-                    <li>High</li>
-                </ul>
-            </section>
-        
-            <section id="acidity">
-                <div class="range">
-                    <input type="range" min="1" max="5" steps="1" value="1">
-                </div>
-                <ul class="range-labels">
-                    <li class="active selected">Low</li>
-                    <li>Med-Low</li>
-                    <li>Medium</li>
-                    <li>Med-High</li>
-                    <li>High</li>
-                </ul>
-            </section>
+                
         </section>
         
     </section>

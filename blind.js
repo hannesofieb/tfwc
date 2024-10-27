@@ -91,7 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     
             addPaintSwatchListeners(); // Re-attach event listeners
-            initializeRangeSliders(); // Initialize sliders after loading section
+            makeDraggable(); // Make draggable elements draggable again
+            addFlavourImageListeners(); // Re-attach flavour image listeners
         }, 500);
     }
 
@@ -178,8 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
-
     // Load the first section initially without any animations
     loadSection(currentSection);
 
@@ -192,84 +191,81 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Event listeners for list items and buttons
-    links.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            event.preventDefault();
-            const sectionKey = link.getAttribute("href").substring(1);
-            loadSection(sectionKey);
-        });
-});
+    // Event listeners for next and previous buttons
+    document.querySelector("#next").addEventListener("click", (event) => {
+        event.preventDefault();
+        const sectionKeys = Object.keys(sections);
+        const currentIndex = sectionKeys.indexOf(currentSection);
+        let nextIndex = (currentIndex + 1) % sectionKeys.length;
 
-// Event listeners for next and previous buttons
-document.querySelector("#next").addEventListener("click", (event) => {
-    event.preventDefault();
-    const sectionKeys = Object.keys(sections);
-    const currentIndex = sectionKeys.indexOf(currentSection);
-    const nextIndex = (currentIndex + 1) % sectionKeys.length;
-    loadSection(sectionKeys[nextIndex]);
-});
+        // Ensure correct navigation through subsections
+        if (sectionKeys[currentIndex] === "taste" && currentIndex + 1 < sectionKeys.length) {
+            nextIndex = currentIndex + 1;
+        }
 
-document.querySelector("#prev").addEventListener("click", (event) => {
-    event.preventDefault();
-    const sectionKeys = Object.keys(sections);
-    const currentIndex = sectionKeys.indexOf(currentSection);
-    const prevIndex = (currentIndex - 1 + sectionKeys.length) % sectionKeys.length;
-    loadSection(sectionKeys[prevIndex]);
-});
-
-addPaintSwatchListeners(); // Initial attachment
-loadSection(currentSection);
-
-// Function to initialize range sliders and add necessary event listeners
-function initializeRangeSliders() {
-    const rangeInputs = document.querySelectorAll('.range input');
-
-    rangeInputs.forEach(input => {
-        input.addEventListener('input', function () {
-            updateTrackStyle(this);
-        });
-
-        const labels = input.closest('.range').nextElementSibling.querySelectorAll('li');
-        labels.forEach((label, index) => {
-            label.addEventListener('click', function () {
-                input.value = index + 1;
-                updateTrackStyle(input);
-            });
-        });
+        loadSection(sectionKeys[nextIndex]);
     });
 
-    function updateTrackStyle(rangeInput) {
-        const labels = rangeInput.closest('.range').nextElementSibling.querySelectorAll('li');
-        const value = rangeInput.value;
+    document.querySelector("#prev").addEventListener("click", (event) => {
+        event.preventDefault();
+        const sectionKeys = Object.keys(sections);
+        const currentIndex = sectionKeys.indexOf(currentSection);
+        let prevIndex = (currentIndex - 1 + sectionKeys.length) % sectionKeys.length;
 
-        labels.forEach((label, index) => {
-            label.classList.remove('active', 'selected');
-            if (index < value) {
-                label.classList.add('selected');
-            }
-            if (index == value - 1) {
-                label.classList.add('active');
+        // Ensure correct navigation through subsections
+        if (sectionKeys[currentIndex] === "tasteFlav" && currentIndex - 1 >= 0) {
+            prevIndex = currentIndex - 1;
+        }
+
+        loadSection(sectionKeys[prevIndex]);
+    });
+
+    addPaintSwatchListeners(); // Initial attachment
+    makeDraggable(); // Make draggable elements draggable initially
+    addFlavourImageListeners(); // Make flavour images clickable initially
+    addHoverListeners(); // Add hover listeners for swapping alt text
+});
+
+// Function to add event listeners to the paint swatches
+function addPaintSwatchListeners() {
+    const paintSwatches = document.querySelectorAll(".paint-swatch");
+
+    paintSwatches.forEach(swatch => {
+        swatch.addEventListener("click", () => {
+            const label = swatch.querySelector(".label").textContent;
+            const looksDiv = document.querySelector(".looks p");
+            looksDiv.textContent = `apparence: ${label}`;
+        });
+    });
+}
+
+// Function to add event listeners to the flavour images
+function addFlavourImageListeners() {
+    const flavourImages = document.querySelectorAll(".flavour-image");
+
+    flavourImages.forEach(image => {
+        image.addEventListener("click", () => {
+            const flavour = image.classList.contains("blind") ? image.title : image.alt;
+            const smellsDiv = document.querySelector(".smells p");
+            let currentSmells = smellsDiv.textContent.split(", ").map(smell => smell.trim()).filter(smell => smell !== "nose:");
+
+            if (currentSmells.length < 10 && !currentSmells.includes(flavour)) {
+                currentSmells.push(flavour);
+                smellsDiv.textContent = `nose: ${currentSmells.join(", ")}`;
             }
         });
-
-        const percentage = ((value - 1) / (rangeInput.max - 1)) * 100;
-        rangeInput.style.background = `linear-gradient(to right, #37adbf ${percentage}%, #b2b2b2 ${percentage}%)`;
-    }
-
-    rangeInputs.forEach(input => updateTrackStyle(input));
+    });
 }
-});
 
 // Function to make elements draggable
 function makeDraggable() {
-    // Get all elements with the class name "flavour-image" (or any other class you want to make draggable)
-    const draggableElements = document.getElementsByClassName("flavour-image");
+    // Get all elements with the class name "flavour-image" or "draggable"
+    const draggableElements = document.querySelectorAll(".flavour-image, .draggable");
 
     // Apply dragElement function to each draggable element
-    for (let i = 0; i < draggableElements.length; i++) {
-        dragElement(draggableElements[i]);
-    }
+    draggableElements.forEach(elmnt => {
+        dragElement(elmnt);
+    });
 
     function dragElement(elmnt) {
         let initialMouseX = 0, initialMouseY = 0, initialElementX = 0, initialElementY = 0;
@@ -322,9 +318,6 @@ function makeDraggable() {
 }
 
 
-
-
-
 // Load flavour images into the nose section and make them draggable
 function loadFlavourImages() {
     const flavourContainer = document.createElement("div");
@@ -374,110 +367,32 @@ function loadFlavourImages() {
     });
 }
 
+// Function to add hover event listeners to the parent sections
+function addHoverListeners() {
+    const parentSections = document.querySelectorAll("#tasteTexture .range-container > section");
 
+    parentSections.forEach((section) => {
+        section.addEventListener("mouseenter", () => {
+            const mainP = section.querySelector("p:not(.alt)");
+            const altP = section.querySelector("p.alt");
 
-  
-// Make draggable elements draggable whenever they are loaded
-function addFlavourImageListeners() {
-    const flavourImages = document.querySelectorAll(".flavour-image");
+            if (mainP && altP) {
+                mainP.style.display = "none";
+                altP.style.display = "block";
+            }
+        });
 
-    // Add event listener to each image
-    flavourImages.forEach((img) => {
-        // Add click event to add the smell
-        img.addEventListener("click", () => {
-            // Extract the flavour and sub-flavour from the class list
-            const flavour = [...img.classList].find(cls => cls !== 'flavour-image' && cls !== 'blind');
-            const sub = [...img.classList].find(cls => cls !== 'flavour-image' && cls !== 'blind' && cls !== flavour);
-            
-            const flavourItem = {
-                flavour: flavour || "",
-                sub: sub || "",
-            };
+        section.addEventListener("mouseleave", () => {
+            const mainP = section.querySelector("p:not(.alt)");
+            const altP = section.querySelector("p.alt");
 
-            addSmell(flavourItem);
+            if (mainP && altP) {
+                mainP.style.display = "block";
+                altP.style.display = "none";
+            }
         });
     });
-
-    // Make newly loaded images draggable
-    makeDraggable();
 }
-
-// Function to make elements draggable
-function makeDraggable() {
-    // Get all elements with the class name "flavour-image" (or any other class you want to make draggable)
-    const draggableElements = document.getElementsByClassName("flavour-image");
-
-    // Apply dragElement function to each draggable element
-    for (let i = 0; i < draggableElements.length; i++) {
-        dragElement(draggableElements[i]);
-    }
-
-    function dragElement(elmnt) {
-        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-        elmnt.onmousedown = dragMouseDown;
-
-        function dragMouseDown(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // Get the mouse cursor position at startup
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-
-            // Set listeners for mouse move and mouse up
-            document.onmouseup = closeDragElement;
-            document.onmousemove = elementDrag;
-
-            // Pause animation while dragging
-            elmnt.style.animationPlayState = "paused";
-            document.body.style.cursor = "grabbing";
-        }
-
-        function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-
-            // Calculate the new cursor position
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-
-            // Set the element's new position
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
-
-        function closeDragElement() {
-            // Stop moving when mouse button is released
-            document.onmouseup = null;
-            document.onmousemove = null;
-
-            // Resume animation when drag ends
-            elmnt.style.animationPlayState = "running";
-            document.body.style.cursor = "default";
-        }
-    }
-}
-
-  
-
-// Function to add smell to the .smells container
-function addSmell(item) {
-    const smellsContainer = document.querySelector(".tasting-notes .smells p");
-    const currentSmells = smellsContainer.textContent.split(", ").map((f) => f.trim());
-    const newSmell = `${item.flavour} ${item.sub}`;
-
-    // Add new flavour if it's not a duplicate
-    if (!currentSmells.includes(newSmell) && currentSmells.length < 10) {
-        if (smellsContainer.textContent.trim() === "nose:") {
-            smellsContainer.textContent = `nose: ${newSmell}`;
-        } else {
-            smellsContainer.textContent += `, ${newSmell}`;
-        }
-    }
-}
-
 
 //--------------paint-wall colors
 document.addEventListener("DOMContentLoaded", () => {
