@@ -94,88 +94,88 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 500);
     }
 
-        // Function to load wines for the carousel in #intro section
-        function loadWinesForCarousel() {
-            Papa.parse("blindwines.csv", {
-                download: true,
-                header: true,
-                complete: function (results) {
-                    const wineCarousel = document.querySelector(".wine-carousel");
-                    wineCarousel.style.display = "flex";
-                    wineCarousel.style.flexDirection = "row";
-                    wineCarousel.style.gap = "20px";
+    // Function to load wines for the carousel in #intro section
+    function loadWinesForCarousel() {
+        Papa.parse("blindwines.csv", {
+            download: true,
+            header: true,
+            complete: function (results) {
+                const wineCarousel = document.querySelector(".wine-carousel");
+                wineCarousel.style.display = "flex";
+                wineCarousel.style.flexDirection = "row";
+                wineCarousel.style.gap = "20px";
 
-                    // Track the current selected wine card and attributes
-                    let currentSelectedCard = null;
-                    let selectedWineAttributes = {};
+                // Track the current selected wine card and attributes
+                let currentSelectedCard = null;
+                let selectedWineAttributes = {};
 
-                    // Iterate through each wine and create a card for all images from CSV
-                    results.data.forEach(wine => {
-                        // Create wine card container
-                        const wineCard = document.createElement("div");
-                        wineCard.classList.add("wine-card");
-                        wineCard.style.display = "flex";
-                        wineCard.style.flexDirection = "column";
+                // Iterate through each wine and create a card for all images from CSV
+                results.data.forEach(wine => {
+                    // Create wine card container
+                    const wineCard = document.createElement("div");
+                    wineCard.classList.add("wine-card");
+                    wineCard.style.display = "flex";
+                    wineCard.style.flexDirection = "column";
 
-                        // Create image element for the wine
-                        const imgElement = document.createElement("img");
-                        imgElement.src = wine.front; // Use the image URL from CSV
-                        imgElement.alt = wine.title || "Wine Image";
-                        imgElement.classList.add("wine");
+                    // Create image element for the wine
+                    const imgElement = document.createElement("img");
+                    imgElement.src = wine.front; // Use the image URL from CSV
+                    imgElement.alt = wine.title || "Wine Image";
+                    imgElement.classList.add("wine");
 
-                        // Create selected mark element
-                        const selectedMark = document.createElement("hr");
-                        selectedMark.classList.add("selected-mark");
-                        selectedMark.style.visibility = "hidden"; // Hidden by default
+                    // Create selected mark element
+                    const selectedMark = document.createElement("hr");
+                    selectedMark.classList.add("selected-mark");
+                    selectedMark.style.visibility = "hidden"; // Hidden by default
 
-                        // Add click event to wine card
-                        wineCard.addEventListener("click", () => {
-                            // Deselect previous card if any
-                            if (currentSelectedCard && currentSelectedCard !== wineCard) {
-                                const prevSelectedMark = currentSelectedCard.querySelector(".selected-mark");
-                                currentSelectedCard.classList.remove("selected");
-                                if (prevSelectedMark) {
-                                    prevSelectedMark.style.visibility = "hidden";
-                                }
+                    // Add click event to wine card
+                    wineCard.addEventListener("click", () => {
+                        // Deselect previous card if any
+                        if (currentSelectedCard && currentSelectedCard !== wineCard) {
+                            const prevSelectedMark = currentSelectedCard.querySelector(".selected-mark");
+                            currentSelectedCard.classList.remove("selected");
+                            if (prevSelectedMark) {
+                                prevSelectedMark.style.visibility = "hidden";
                             }
+                        }
 
-                            // Select the new wine card
-                            if (currentSelectedCard !== wineCard) {
-                                wineCard.classList.add("selected");
-                                selectedMark.style.visibility = "visible";
-                                currentSelectedCard = wineCard;
+                        // Select the new wine card
+                        if (currentSelectedCard !== wineCard) {
+                            wineCard.classList.add("selected");
+                            selectedMark.style.visibility = "visible";
+                            currentSelectedCard = wineCard;
 
-                                // Update selected wine attributes
-                                selectedWineAttributes = {
-                                    body: wine.body,
-                                    sweetness: wine.sweetness,
-                                    tannin: wine.tannin,
-                                    acidity: wine.acidity,
-                                };
-                            } else {
-                                // Deselect if clicking the already selected card
-                                wineCard.classList.remove("selected");
-                                selectedMark.style.visibility = "hidden";
-                                currentSelectedCard = null;
-                                selectedWineAttributes = {};
-                            }
+                            // Update selected wine attributes
+                            selectedWineAttributes = {
+                                body: wine.body,
+                                sweetness: wine.sweetness,
+                                tannin: wine.tannin,
+                                acidity: wine.acidity,
+                            };
+                        } else {
+                            // Deselect if clicking the already selected card
+                            wineCard.classList.remove("selected");
+                            selectedMark.style.visibility = "hidden";
+                            currentSelectedCard = null;
+                            selectedWineAttributes = {};
+                        }
 
-                            console.log(selectedWineAttributes); // Debugging: Log selected attributes
-                        });
-
-                        // Append elements to wine card
-                        wineCard.appendChild(imgElement);
-                        wineCard.appendChild(selectedMark);
-
-                        // Append wine card to wine carousel
-                        wineCarousel.appendChild(wineCard);
+                        console.log(selectedWineAttributes); // Debugging: Log selected attributes
                     });
-                },
-                error: function (error) {
-                    console.error("Error loading CSV:", error);
-                }
-            });
-        }
+
+                    // Append elements to wine card
+                    wineCard.appendChild(imgElement);
+                    wineCard.appendChild(selectedMark);
+
+                    // Append wine card to wine carousel
+                    wineCarousel.appendChild(wineCard);
+                });
+            },
+            error: function (error) {
+                console.error("Error loading CSV:", error);
+            }
+        });
+    }
 
 
 
@@ -223,8 +223,66 @@ addPaintSwatchListeners(); // Initial attachment
     addPaintSwatchListeners(); // Initial attachment
 });
 
+// Function to make elements draggable
+function makeDraggable() {
+    // Get all elements with the class name "flavour-image" (or any other class you want to make draggable)
+    const draggableElements = document.getElementsByClassName("flavour-image");
 
-// Function to load flavour images into the nose section
+    // Apply dragElement function to each draggable element
+    for (let i = 0; i < draggableElements.length; i++) {
+        dragElement(draggableElements[i]);
+    }
+
+    function dragElement(elmnt) {
+        let offsetX = 0, offsetY = 0, initialX = 0, initialY = 0;
+
+        elmnt.onmousedown = dragMouseDown;
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+
+            // Get initial cursor position
+            initialX = e.clientX;
+            initialY = e.clientY;
+
+            // Set listeners for mouse move and mouse up
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+
+            // Pause animation while dragging
+            elmnt.style.animationPlayState = "paused";
+            document.body.style.cursor = "grabbing";
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+
+            // Calculate new cursor position
+            offsetX = initialX - e.clientX;
+            offsetY = initialY - e.clientY;
+            initialX = e.clientX;
+            initialY = e.clientY;
+
+            // Set the element's new position
+            elmnt.style.top = (elmnt.offsetTop - offsetY) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - offsetX) + "px";
+        }
+
+        function closeDragElement() {
+            // Stop moving when mouse button is released
+            document.onmouseup = null;
+            document.onmousemove = null;
+
+            // Resume animation when drag ends
+            elmnt.style.animationPlayState = "running";
+            document.body.style.cursor = "default";
+        }
+    }
+}
+
+// Load flavour images into the nose section and make them draggable
 function loadFlavourImages() {
     const flavourContainer = document.createElement("div");
     flavourContainer.classList.add("flavour-container");
@@ -239,7 +297,7 @@ function loadFlavourImages() {
             randomFlavours.forEach((item) => {
                 if (item.flavour && item.sub && item.img) {
                     const imgElement = document.createElement("img");
-                    imgElement.className = `blind ${item.flavour} ${item.sub} flavour-image`;
+                    imgElement.className = `flavour-image blind ${item.flavour} ${item.sub}`;
                     imgElement.src = item.img;
                     imgElement.title = `${item.flavour} ${item.sub}`;
 
@@ -254,12 +312,8 @@ function loadFlavourImages() {
                         { name: "float-anticlockwise", duration: "18s" },
                         { name: "float-zigzag", duration: "20s" },
                     ];
-                    const randomPattern =
-                        movementPatterns[Math.floor(Math.random() * movementPatterns.length)];
+                    const randomPattern = movementPatterns[Math.floor(Math.random() * movementPatterns.length)];
                     imgElement.style.animation = `${randomPattern.name} ${randomPattern.duration} ease-in-out infinite`;
-
-                    // Make the images draggable
-                    makeDraggable(imgElement, item);
 
                     flavourContainer.appendChild(imgElement);
                 }
@@ -267,6 +321,9 @@ function loadFlavourImages() {
 
             const main = document.querySelector(".main");
             main.appendChild(flavourContainer); // Append flavour container to the main section
+
+            // Make the new images draggable
+            makeDraggable();
         },
         error: function (error) {
             console.error("Error loading CSV:", error);
@@ -274,59 +331,93 @@ function loadFlavourImages() {
     });
 }
 
-// Function to make an element draggable
-function makeDraggable(element, item) {
-    let isDragging = false;
-    let startX, startY;
-    let moveThreshold = 5; // Minimum distance to consider as dragging
-    let initialMouseX, initialMouseY;
 
-    element.addEventListener("mousedown", (e) => {
-        isDragging = false;
-        startX = e.clientX - element.offsetLeft;
-        startY = e.clientY - element.offsetTop;
-        initialMouseX = e.clientX;
-        initialMouseY = e.clientY;
 
-        // Pause animation while dragging
-        element.style.animationPlayState = "paused";
-        document.body.style.cursor = "grabbing";
+  
+// Make draggable elements draggable whenever they are loaded
+function addFlavourImageListeners() {
+    const flavourImages = document.querySelectorAll(".flavour-image");
 
-        // Add event listeners for mousemove and mouseup on document
-        document.addEventListener("mousemove", onMouseMove);
-        document.addEventListener("mouseup", onMouseUp);
+    // Add event listener to each image
+    flavourImages.forEach((img) => {
+        // Add click event to add the smell
+        img.addEventListener("click", () => {
+            // Extract the flavour and sub-flavour from the class list
+            const flavour = [...img.classList].find(cls => cls !== 'flavour-image' && cls !== 'blind');
+            const sub = [...img.classList].find(cls => cls !== 'flavour-image' && cls !== 'blind' && cls !== flavour);
+            
+            const flavourItem = {
+                flavour: flavour || "",
+                sub: sub || "",
+            };
+
+            addSmell(flavourItem);
+        });
     });
 
-    function onMouseMove(e) {
-        // Calculate the distance moved
-        const deltaX = e.clientX - initialMouseX;
-        const deltaY = e.clientY - initialMouseY;
+    // Make newly loaded images draggable
+    makeDraggable();
+}
 
-        // If the mouse moved beyond the threshold, consider it a drag
-        if (Math.abs(deltaX) > moveThreshold || Math.abs(deltaY) > moveThreshold) {
-            isDragging = true;
-            const x = e.clientX - startX;
-            const y = e.clientY - startY;
-            element.style.left = `${x}px`;
-            element.style.top = `${y}px`;
-        }
+// Function to make elements draggable
+function makeDraggable() {
+    // Get all elements with the class name "flavour-image" (or any other class you want to make draggable)
+    const draggableElements = document.getElementsByClassName("flavour-image");
+
+    // Apply dragElement function to each draggable element
+    for (let i = 0; i < draggableElements.length; i++) {
+        dragElement(draggableElements[i]);
     }
 
-    function onMouseUp(e) {
-        // Remove the mousemove and mouseup listeners
-        document.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseup", onMouseUp);
+    function dragElement(elmnt) {
+        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
-        // Resume animation when drag ends
-        element.style.animationPlayState = "running";
-        document.body.style.cursor = "default";
+        elmnt.onmousedown = dragMouseDown;
 
-        // If it was not a drag, treat it as a click
-        if (!isDragging) {
-            addSmell(item);
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // Get the mouse cursor position at startup
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+
+            // Set listeners for mouse move and mouse up
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+
+            // Pause animation while dragging
+            elmnt.style.animationPlayState = "paused";
+            document.body.style.cursor = "grabbing";
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+
+            // Calculate the new cursor position
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+
+            // Set the element's new position
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            // Stop moving when mouse button is released
+            document.onmouseup = null;
+            document.onmousemove = null;
+
+            // Resume animation when drag ends
+            elmnt.style.animationPlayState = "running";
+            document.body.style.cursor = "default";
         }
     }
 }
+
+  
 
 // Function to add smell to the .smells container
 function addSmell(item) {
