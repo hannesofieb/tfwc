@@ -234,23 +234,26 @@ function makeDraggable() {
     }
 
     function dragElement(elmnt) {
-        let offsetX = 0, offsetY = 0, initialX = 0, initialY = 0;
+        let initialMouseX = 0, initialMouseY = 0, initialElementX = 0, initialElementY = 0;
 
+        // Start dragging on mouse down
         elmnt.onmousedown = dragMouseDown;
 
         function dragMouseDown(e) {
             e = e || window.event;
             e.preventDefault();
 
-            // Get initial cursor position
-            initialX = e.clientX;
-            initialY = e.clientY;
+            // Store the initial mouse position and element position
+            initialMouseX = e.clientX;
+            initialMouseY = e.clientY;
+            initialElementX = elmnt.offsetLeft;
+            initialElementY = elmnt.offsetTop;
 
             // Set listeners for mouse move and mouse up
             document.onmouseup = closeDragElement;
             document.onmousemove = elementDrag;
 
-            // Pause animation while dragging
+            // Pause any animations while dragging
             elmnt.style.animationPlayState = "paused";
             document.body.style.cursor = "grabbing";
         }
@@ -259,15 +262,13 @@ function makeDraggable() {
             e = e || window.event;
             e.preventDefault();
 
-            // Calculate new cursor position
-            offsetX = initialX - e.clientX;
-            offsetY = initialY - e.clientY;
-            initialX = e.clientX;
-            initialY = e.clientY;
+            // Calculate the new position of the element based on the mouse movement
+            let deltaX = e.clientX - initialMouseX;
+            let deltaY = e.clientY - initialMouseY;
 
-            // Set the element's new position
-            elmnt.style.top = (elmnt.offsetTop - offsetY) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - offsetX) + "px";
+            // Set the element's new position to match the mouse movement
+            elmnt.style.left = initialElementX + deltaX + "px";
+            elmnt.style.top = initialElementY + deltaY + "px";
         }
 
         function closeDragElement() {
@@ -275,12 +276,16 @@ function makeDraggable() {
             document.onmouseup = null;
             document.onmousemove = null;
 
-            // Resume animation when drag ends
+            // Resume any animations after dragging
             elmnt.style.animationPlayState = "running";
             document.body.style.cursor = "default";
         }
     }
 }
+
+
+
+
 
 // Load flavour images into the nose section and make them draggable
 function loadFlavourImages() {
