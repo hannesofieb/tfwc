@@ -52,7 +52,7 @@ html, body {
     flex-wrap: wrap;
     justify-content: space-between;  /* Ensure the goon-cards are spaced properly */
     align-items: flex-start;
-    width: 95%;                      /* Set the width for goon-cards */
+    width: 100%;                      /* Set the width for goon-cards */
     height: 100%;                    /* Fill the height of the grid */
     margin: auto;                    /* Center horizontally */
     overflow: auto;                  /* Allow scrolling if there are many cards */

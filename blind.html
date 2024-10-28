@@ -20,7 +20,9 @@
                 <ul>
                     <li class="index-line"><div class="active-icon"><img src="/assets/cursors/clicked-wine.cur" alt="wine icon" style="width: 17px; height: 17px;"></div><a href="#taste">taste the goods</a></li>
                     <li class="index-line"><div class="active-icon"><img src="/assets/cursors/clicked-wine.cur" alt="wine icon" style="width: 17px; height: 17px;"></div><a href="#tasteTexture">feel it in your mouth</a></li>
-                  </ul>
+                </ul>
+                <li class="index-line"><div class="active-icon"><img src="/assets/cursors/clicked-wine.cur" alt="wine icon" style="width: 17px; height: 17px; margin-right: 5px;"></div><a href="#compare">did we do it?</a></li>
+
             </ul>
             <img src="" alt="" id="gif-instruction">
             <section class="tasting-notes">
@@ -49,7 +51,7 @@
     <!-------- sections to be placed inside main div -------->
     
     <section id="intro">
-        <div class="text">
+        <div class="intro-text">
             <h1 class="intro">learning the art of becoming a wine wanker</h1>
             <p class="intro">there are many ways of becoming a wine wanker, and to begin, it is important to know the basics of a wine tasting. as any other skillset, it is important to practice in order to perfect the wankery (so it appears like you know what you are doing.)</p>
             <p class="intro">ultimately however, it's not really that fussy. taste is subjective so whatever you say goes</p>
@@ -235,7 +237,6 @@
                 </section>
             </section>
         </section>
-    
         </section>
         <section id="tasteTexture">
             <section class="container">
@@ -306,6 +307,43 @@
         </section>
     </section>
 
+    <section id="compare">
+        <div id="final-container">
+            <img src="" alt="" class="bottle-img"> <!-- place the blindwines.img that was selected previously -->
+            <section class="comparison-info">
+                <section class="tasting">
+                    <div class="notes you">
+                        <div class="app-flavs">
+                            <div class="app-col"></div>
+                            <div class="flavs"></div>
+                        </div>
+                        <div class="text">
+                            <p class="t-body">body</p>
+                            <p class="t-sweetness"></p>
+                            <p class="t-tannin">tannins</p>
+                            <p class="t-acidity">acidity</p>
+                        </div>
+                    </div>
+                    <div class="notes fasit">
+                        <div class="app-flavs">
+                            <div class="app-col"></div>
+                            <div class="flavs"></div>
+                        </div>
+                        <div class="text">
+                            <p id="t-body">body</p>
+                            <p id="t-sweetness"></p>
+                            <p id="t-tannin">tannins</p>
+                            <p id="t-acidity">acidity</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="score">
+                    <div class="percent">35%</div>
+                    <p>match with the somalier</p>
+                </section>
+            </section>
+        </div>
+    </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="blind.js"></script>

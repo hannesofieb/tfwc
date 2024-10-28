@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
         nose: "#nose",
         taste: "#taste",
         tasteFlav: "#tasteFlav",
-        tasteTexture: "#tasteTexture"
+        tasteTexture: "#tasteTexture",
+        compare: "#compare"
     };
 
     let currentSection = "intro";
@@ -213,6 +214,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    
 
     // Load the first section initially without any animations
     loadSection(currentSection);
@@ -770,5 +773,6 @@ const gifs = {
     nose: "https://media4.giphy.com/media/2zco8yS1r8Rhx2cxcf/200w.gif",
     taste: "https://media1.tenor.com/m/gwSt5vdhFQIAAAAd/the-office-michael-scott.gif",
     tasteFlav: "https://media1.tenor.com/m/gwSt5vdhFQIAAAAd/the-office-michael-scott.gif",  // replace with actual URL
-    tasteTexture: "https://media1.tenor.com/m/COAVJha-9yYAAAAd/drinking-wine-david-rose.gif"  // replace with actual URL
+    tasteTexture: "https://media1.tenor.com/m/COAVJha-9yYAAAAd/drinking-wine-david-rose.gif",  // replace with actual URL
+    compare: "https://winewankers.com/wp-content/uploads/2016/08/giphy.gif?w=480"
 };
