@@ -572,22 +572,20 @@ button:hover{
 #final-container{
     display: flex;
     flex-direction: row;
-    height: 70%;
+    height: 60%;
     width: 80%;
-    margin: 2% 0;
-    background-color: red;
+    margin: 10% 0;
 
 }
 
 .bottle-img{
-    width: 20%;
+    height: 90%;
 
 }
 
 .comparison-info{
     display: flex;
     flex-direction: column;
-    background-color: blue;
     width: 80%;
     height: 100%;
 }
@@ -597,7 +595,6 @@ button:hover{
     flex-direction: row;
     justify-content: space-between;
     height: 70%;
-    background-color: greenyellow;
 }
 
 .notes{
@@ -611,22 +608,40 @@ button:hover{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
     width: 100%;
     height: 80%;
 }
 
 
 .app-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: flex-end;
     width: 30%;
     height: 100%;
-    background-color: purple;
+}
+
+.app-col p{
+    font-size: 10px;
+    margin: 0 0 2% 2%;
 }
 
 .flavs{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-end;
     width: 70%;
-    background-color: peru;
+    overflow: hidden;
+}
+
+.flavs img{
+    width: 45%;
+    height: auto;
+    padding: 0;
 }
 
 .text{

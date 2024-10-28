@@ -255,17 +255,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#prev").addEventListener("click", (event) => {
         event.preventDefault();
+        // Check if the current section is "tasteTexture"
         if (currentSection === "tasteTexture") {
-            // Move back to depends-on-answer and re-display #check-answer
-            loadSection("taste");
-            document.querySelector("#check-answer").style.display = "block";
+            // Move to "compare" section after "tasteTexture"
+            loadSection("compare");
+
+            
+        } else if (currentSection === "taste" && document.querySelector("#depends-on-answer").children.length > 0) {
+            // Move to "tasteTexture" section after depends-on-answer
+            loadSection("tasteTexture");
         } else {
             const sectionKeys = Object.keys(sections);
             const currentIndex = sectionKeys.indexOf(currentSection);
-            let prevIndex = (currentIndex - 1 + sectionKeys.length) % sectionKeys.length;
+            let nextIndex = (currentIndex + 1) % sectionKeys.length;
 
-            // Navigate to the previous section
-            loadSection(sectionKeys[prevIndex]);
+            // Navigate to the next section
+            loadSection(sectionKeys[nextIndex]);
         }
     });
 
@@ -279,6 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize the structure values on load
     updateStructure();
+
 });
 
 
@@ -732,10 +738,11 @@ function updateStructure(section, value) {
         console.error("#structure p.structure element not found");
     }
 
+    
+
     // Log the current structure for debugging purposes
     console.log("Updated structure:", structure);
 }
-
 
 
 // // Function to reset the structure object and remove active classes
